@@ -7,10 +7,14 @@
 #include <QWebPage>
 #include <QWebFrame>
 
-#ifdef Q_OS_OSX
-#define OPENRCT2_EXEC "Library/Application Support/OpenRCT2/OpenRCT2.app/Contents/MacOS/OpenRCT2"
+#if defined(Q_OS_WIN)
+#define OPENRCT2_EXEC_LOCATION "Documents/OpenRCT2/bin/openrct2.exe"
+#elif defined(Q_OS_OSX)
+#define OPENRCT2_EXEC_LOCATION "Library/Application Support/OpenRCT2/bin/OpenRCT2.app/Contents/MacOS/OpenRCT2"
+#elif defined(Q_OS_LINUX)
+#define OPENRCT2_EXEC_LOCATION ".cache/OpenRCT2/bin/openrct2"
 #else
-#error "Unsupported Platform"
+#error Unsupported Platform
 #endif
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -32,12 +36,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::launch() {
 #ifdef Q_OS_OSX
+    // Prevents showing the "downloaded from the internet" warning
+    // Will be moved when downloading is implemented
     QProcess clearattr;
     clearattr.setWorkingDirectory(QDir::homePath());
     clearattr.start("xattr", {"-d", "com.apple.quarantine", "Library/Application Support/OpenRCT2/OpenRCT2.app"});
     clearattr.waitForFinished();
 #endif
 
-    QProcess::startDetached("open", QStringList("Library/Application Support/OpenRCT2/OpenRCT2.app"), QDir::homePath());
+    QProcess::startDetached(OPENRCT2_EXEC_LOCATION, QStringList(), QDir::homePath());
     QApplication::quit();
 }
