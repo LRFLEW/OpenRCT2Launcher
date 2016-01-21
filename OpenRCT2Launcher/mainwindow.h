@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "updater.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,7 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    Updater updater;
 };
 
 #endif // MAINWINDOW_H

@@ -25,8 +25,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->splashScreen->page()->mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
     ui->splashScreen->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    ui->progressBar->setHidden(true);
 
     connect(ui->launchButton, &QPushButton::clicked, this, &MainWindow::launch);
+
+    connect(&updater, &Updater::installed, [this]{ ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
+    connect(&updater, &Updater::error, [this](QString error){ ui->errorLabel->setText(error); ui->launchButton->setEnabled(true); });
+    connect(&updater, &Updater::downloadProgress, [this](qint64 bytesReceived, qint64 bytesTotal){
+        ui->progressBar->setHidden(false); ui->progressBar->setMaximum(bytesTotal); ui->progressBar->setValue(bytesReceived); });
+
+    updater.download();
 }
 
 MainWindow::~MainWindow()
@@ -35,15 +43,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::launch() {
-#ifdef Q_OS_OSX
-    // Prevents showing the "downloaded from the internet" warning
-    // Will be moved when downloading is implemented
-    QProcess clearattr;
-    clearattr.setWorkingDirectory(QDir::homePath());
-    clearattr.start("xattr", {"-d", "com.apple.quarantine", "Library/Application Support/OpenRCT2/OpenRCT2.app"});
-    clearattr.waitForFinished();
-#endif
-
     QProcess::startDetached(OPENRCT2_EXEC_LOCATION, QStringList(), QDir::homePath());
     QApplication::quit();
 }

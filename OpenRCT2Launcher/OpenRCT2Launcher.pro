@@ -4,16 +4,18 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets webkitwidgets
+QT       += core gui widgets network webkitwidgets
 
 TARGET = OpenRCT2Launcher
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+           mainwindow.cpp \
+           updater.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+            updater.h
 
 FORMS    += mainwindow.ui
 
