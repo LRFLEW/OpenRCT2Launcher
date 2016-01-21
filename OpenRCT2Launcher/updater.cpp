@@ -1,4 +1,5 @@
 #include "updater.h"
+#include "platform.h"
 
 #include <QCryptographicHash>
 #include <QDir>
@@ -11,18 +12,8 @@
 #include <QTemporaryFile>
 #include <QUrlQuery>
 
-#if defined(Q_OS_WIN)
-#define OPENRCT2_FLAVOR "1"
-#define OPENRCT2_BIN "Documents/OpenRCT2/bin/"
-#elif defined(Q_OS_OSX)
-#define OPENRCT2_FLAVOR "3"
-#define OPENRCT2_BIN "Library/Application Support/OpenRCT2/bin/"
-#elif defined(Q_OS_LINUX)
-#define OPENRCT2_FLAVOR "4"
-#define OPENRCT2_BIN ".cache/OpenRCT2/bin/"
-#else
-#error Unsupported Platform
-#endif
+#include <archive.h>
+#include <archive_entry.h>
 
 Updater::Updater(QObject *parent) : QObject(parent)
 {
@@ -101,82 +92,77 @@ void Updater::receivedBundle() {
         return;
     }
 
-#if defined(Q_OS_MAC)
-    // This is a workaround to get a quick build released.
-    // This will be replaced with a library/class to perform this.
-    QTemporaryFile tempzip;
-    tempzip.open();
-    tempzip.write(data);
-    tempzip.close();
-
     QDir bin = QDir::home();
-    if (bin.cd("Library/Application Support/OpenRCT2/bin/")) {
-        if (bin.exists()) bin.removeRecursively();
-        bin.cdUp();
-        bin.mkpath("bin");
+    if (bin.cd(OPENRCT2_BIN)) {
+        bin.removeRecursively();
+        bin.mkdir("");
     } else {
-        bin.mkpath("Library/Application Support/OpenRCT2/bin/");
+        bin.mkpath(OPENRCT2_BIN);
     }
 
-    QProcess unzip;
-    unzip.setWorkingDirectory(QDir::homePath());
-    unzip.start("unzip", {QFileInfo(tempzip.fileName()).absoluteFilePath(), "-d", "Library/Application Support/OpenRCT2/bin/"});
-    unzip.waitForFinished(5000);
-    if (unzip.state() != QProcess::NotRunning) {
-        unzip.kill();
-        emit error("Unable to Install");
-        return;
-    }
-    if (unzip.exitStatus() != QProcess::NormalExit) {
-        emit error("Unable to Install");
-        return;
-    }
+    if (extract(data)) {
+        emit installed();
 
-    emit installed();
-#elif defined(Q_OS_LINUX)
-    // Similar situation to the OS X solution
-    // Difference is that Linux uses .tar.gz files
-    QTemporaryFile tempzip;
-    tempzip.open();
-    tempzip.write(data);
-    tempzip.close();
-
-    QDir bin = QDir::home();
-    if (bin.cd(".cache/OpenRCT2/bin/")) {
-        if (bin.exists()) bin.removeRecursively();
-        bin.cdUp();
-        bin.mkpath("bin");
-    } else {
-        bin.mkpath(".cache/OpenRCT2/bin/");
+        QSettings settings;
+        settings.setValue("downloadId", version);
     }
-
-    QProcess unzip;
-    unzip.setWorkingDirectory(QDir::homePath());
-    unzip.execute("tar", {"-zxf", QFileInfo(tempzip.fileName()).absoluteFilePath(), "-C", ".cache/OpenRCT2/bin/"});
-    unzip.waitForFinished();
-    if (unzip.state() != QProcess::NotRunning) {
-        unzip.kill();
-        emit error("Unable to Install");
-        return;
-    }
-    if (unzip.exitStatus() != QProcess::NormalExit) {
-        emit error("Unable to Install");
-        return;
-    }
-
-    emit installed();
-#elif defined(Q_OS_WIN)
-    // I don't know the Windows Command-Line, so I can't hack it
-    // Just auto-fail for now.
-    emit error("Unable to Install");
-    return;
-#else
-#error Unsupported Platform
-#endif
-    QSettings settings;
-    settings.setValue("downloadId", version);
 }
 
 void Updater::errorReply(QNetworkReply::NetworkError code) {
     emit error(QString("Network Error ") + code + ": " + reply->errorString());
+}
+
+bool Updater::extract(QByteArray &data) {
+    struct archive *a = archive_read_new();
+
+#ifdef Q_OS_LINUX
+    archive_read_support_compression_gzip(a);
+    archive_read_support_format_tar(a);
+#else
+    archive_read_support_format_zip(a);
+#endif
+
+    int r = archive_read_open_memory(a, data.data(), data.size());
+    if (r != ARCHIVE_OK) {
+        emit error(archive_error_string(a));
+        return false;
+    }
+
+    struct archive_entry *entry;
+    char buffer[4096];
+    QDir bin(QDir::home());
+    bin.cd(OPENRCT2_BIN);
+    while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
+        quint16 type = archive_entry_filetype(entry);
+        QString name = archive_entry_pathname(entry);
+        if (type == AE_IFDIR) {
+            QDir dir(bin);
+            dir.mkdir(name);
+        } else if (type == AE_IFREG) {
+            QFileInfo info(bin, name);
+            QFile file(info.absoluteFilePath());
+            file.open(QFile::WriteOnly);
+
+            size_t read;
+            do {
+                read = archive_read_data(a, buffer, 4096);
+                file.write(buffer, read);
+            } while (read != 0);
+            file.close();
+
+            int perm = archive_entry_mode(entry) & ~AE_IFMT;
+            file.setPermissions(static_cast<QFile::Permissions>(((perm & 0700) << 6) | ((perm & 0700) << 2) | ((perm & 0070) << 1) | (perm & 0007)));
+        } else {
+            emit error("Unknown file type");
+            return false;
+        }
+    }
+
+    r = archive_read_finish(a);
+    if (r != ARCHIVE_OK) {
+        emit error(archive_error_string(a));
+        return false;
+    }
+
+    return true;
 }
