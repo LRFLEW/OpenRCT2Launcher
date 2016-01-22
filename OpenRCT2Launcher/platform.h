@@ -10,7 +10,7 @@
 #if defined(Q_OS_WIN)
 
 #define OPENRCT2_FLAVOR "1"
-#define OPENRCT2_BIN "Documents/OpenRCT2/bin/"
+#define OPENRCT2_BIN "Documents\\OpenRCT2\\bin\\"
 #define OPENRCT2_EXEC_LOCATION OPENRCT2_BIN "openrct2.exe"
 
 #elif defined(Q_OS_OSX)
@@ -22,7 +22,7 @@
 #elif defined(Q_OS_LINUX)
 
 #define OPENRCT2_FLAVOR "4"
-#define OPENRCT2_BIN ".cache/OpenRCT2/bin/"
+#define OPENRCT2_BIN ".config/OpenRCT2/bin/"
 #define OPENRCT2_EXEC_LOCATION OPENRCT2_BIN "openrct2"
 
 #else

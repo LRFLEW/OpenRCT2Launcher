@@ -34,6 +34,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::launch() {
-    QProcess::startDetached(OPENRCT2_EXEC_LOCATION, QStringList(), QDir::homePath());
-    QApplication::quit();
+    if (QProcess::startDetached(OPENRCT2_EXEC_LOCATION, QStringList(), QDir::homePath())) {
+        QApplication::quit();
+    } else {
+        ui->errorLabel->setText("Unable to Launch Game");
+    }
 }

@@ -95,7 +95,7 @@ void Updater::receivedBundle() {
     QDir bin = QDir::home();
     if (bin.cd(OPENRCT2_BIN)) {
         bin.removeRecursively();
-        bin.mkdir("");
+        bin.mkpath(".");
     } else {
         bin.mkpath(OPENRCT2_BIN);
     }
@@ -136,10 +136,10 @@ bool Updater::extract(QByteArray &data) {
         quint16 type = archive_entry_filetype(entry);
         QString name = archive_entry_pathname(entry);
         if (type == AE_IFDIR) {
-            QDir dir(bin);
-            dir.mkdir(name);
+            bin.mkdir(name);
         } else if (type == AE_IFREG) {
             QFileInfo info(bin, name);
+            info.dir().mkpath(".");
             QFile file(info.absoluteFilePath());
             file.open(QFile::WriteOnly);
 
