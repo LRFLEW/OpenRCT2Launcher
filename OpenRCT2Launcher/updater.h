@@ -34,6 +34,7 @@ private:
     QNetworkReply *reply;
     int size;
     QByteArray hash;
+    QByteArray githash;
     QString version;
 };
 

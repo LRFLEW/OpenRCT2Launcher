@@ -60,7 +60,8 @@ void Updater::receivedAPI() {
         emit installed();
     } else {
         size = robj["fileSize"].toInt();
-        hash = QByteArray::fromHex(robj["fileHash"].toString().toLocal8Bit());
+        hash = QByteArray::fromHex(robj["fileHash"].toString().toLatin1());
+        githash = QByteArray::fromHex(robj["gitHash"].toString().toLatin1());
 
         QNetworkRequest request(robj["url"].toString());
         reply = net.get(request);
@@ -105,6 +106,7 @@ void Updater::receivedBundle() {
 
         QSettings settings;
         settings.setValue("downloadId", version);
+        settings.setValue("gitHash", githash);
     }
 }
 
@@ -139,7 +141,6 @@ bool Updater::extract(QByteArray &data) {
             bin.mkdir(name);
         } else if (type == AE_IFREG) {
             QFileInfo info(bin, name);
-            info.dir().mkpath(".");
             QFile file(info.absoluteFilePath());
             file.open(QFile::WriteOnly);
 
