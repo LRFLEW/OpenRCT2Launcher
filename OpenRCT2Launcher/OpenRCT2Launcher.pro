@@ -6,7 +6,7 @@
 
 QT       += core gui widgets network webkitwidgets
 
-TARGET = OpenRCT2Launcher
+TARGET = OpenRCT2
 TEMPLATE = app
 
 
@@ -28,6 +28,7 @@ QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 
 macx {
     INCLUDEPATH += /usr/local/opt/libarchive/include
+    ICON = ../Icon/OpenRCT2.icns
 }
 
 LIBS += -larchive
