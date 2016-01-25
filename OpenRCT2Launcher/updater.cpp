@@ -137,6 +137,14 @@ bool Updater::extract(QByteArray &data) {
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         quint16 type = archive_entry_filetype(entry);
         QString name = archive_entry_pathname(entry);
+
+#ifdef Q_OS_LINUX
+        if (name.startsWith("OpenRCT2/")) {
+            name.remove(0, 9);
+            if (name.isEmpty()) continue;
+        }
+#endif
+
         if (type == AE_IFDIR) {
             bin.mkdir(name);
         } else if (type == AE_IFREG) {
