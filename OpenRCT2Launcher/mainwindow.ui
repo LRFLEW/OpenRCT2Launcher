@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>458</width>
+    <width>420</width>
     <height>280</height>
    </rect>
   </property>
@@ -31,24 +31,16 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QWebView" name="splashScreen">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="url">
-       <url>
-        <string>https://openrct.net/inLauncher/launcher.html</string>
-       </url>
+     <widget class="QLabel" name="label">
+      <property name="pixmap">
+       <pixmap resource="resources.qrc">:/splash.png</pixmap>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QFrame" name="buttonRow">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -134,13 +126,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
-  </customwidget>
- </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

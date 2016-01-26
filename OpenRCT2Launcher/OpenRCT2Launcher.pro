@@ -4,21 +4,23 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets network webkitwidgets
+QT       += core gui widgets network
 
 TARGET = OpenRCT2
 TEMPLATE = app
 
 
-SOURCES  += main.cpp\
-            mainwindow.cpp \
-            updater.cpp
+SOURCES   += main.cpp\
+             mainwindow.cpp \
+             updater.cpp
 
-HEADERS  += mainwindow.h \
-            updater.h \
-            platform.h
+HEADERS   += mainwindow.h \
+             updater.h \
+             platform.h
 
-FORMS    += mainwindow.ui
+FORMS     += mainwindow.ui
+
+RESOURCES += resources.qrc
 
 CONFIG += c++11
 
@@ -28,7 +30,7 @@ QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 
 macx {
     INCLUDEPATH += /usr/local/opt/libarchive/include
-    ICON = ../Icon/OpenRCT2.icns
+    ICON = Icon/OpenRCT2.icns
 }
 
 LIBS += -larchive

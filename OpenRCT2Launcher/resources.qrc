@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="splash.png">Resources/splash.png</file>
+    </qresource>
+</RCC>

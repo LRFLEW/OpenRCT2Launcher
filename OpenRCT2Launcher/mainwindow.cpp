@@ -4,9 +4,6 @@
 
 #include <QDir>
 #include <QProcess>
-#include <QWebView>
-#include <QWebPage>
-#include <QWebFrame>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,10 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->splashScreen->page()->mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
-    ui->splashScreen->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     ui->progressBar->setHidden(true);
-
     connect(ui->launchButton, &QPushButton::clicked, this, &MainWindow::launch);
 
     connect(&updater, &Updater::installed, [this]{ ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
