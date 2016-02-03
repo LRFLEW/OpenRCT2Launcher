@@ -4,21 +4,25 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets network
+QT       += core gui widgets network multimedia
 
 TARGET = OpenRCT2
 TEMPLATE = app
 
 
-SOURCES   += main.cpp\
-             mainwindow.cpp \
-             updater.cpp
+SOURCES  += main.cpp\
+            mainwindow.cpp \
+            updater.cpp \
+            configuration.cpp
 
-HEADERS   += mainwindow.h \
-             updater.h \
-             platform.h
+HEADERS  += mainwindow.h \
+            updater.h \
+            platform.h \
+            configuration.h \
+    configuration_data.h
 
-FORMS     += mainwindow.ui
+FORMS    += mainwindow.ui \
+            configuration.ui
 
 RESOURCES += resources.qrc
 

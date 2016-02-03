@@ -18,6 +18,7 @@ public:
 
 public slots:
     void launch();
+    void on_optionsButton_clicked();
 
 private:
     Ui::MainWindow *ui;

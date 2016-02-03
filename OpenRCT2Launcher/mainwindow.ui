@@ -119,6 +119,16 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="optionsButton">
+         <property name="text">
+          <string>Options</string>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

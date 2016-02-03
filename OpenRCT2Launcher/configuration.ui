@@ -1,0 +1,1989 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Configuration</class>
+ <widget class="QDialog" name="Configuration">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>482</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Options</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_10">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="launcherTab">
+      <attribute name="title">
+       <string>Launcher</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>RCT2 Location:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="rct2Path">
+           <property name="config" stdset="0">
+            <string>game_path</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="locateRCT2">
+           <property name="text">
+            <string>Locate</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Branch:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Stable</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton">
+           <property name="text">
+            <string>Develop</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>160</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="displayTab">
+      <attribute name="title">
+       <string>Display</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Hardware</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Fullscreen Mode:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox">
+              <property name="config" stdset="0">
+               <string>fullscreen_mode</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>Windowed</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Fullscreen</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Fullscreen (desktop)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Fullscreen Size:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Width</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="fullscreenWidth">
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="config" stdset="0">
+               <string>fullscreen_width</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Height</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="fullscreenHeight">
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="config" stdset="0">
+               <string>fullscreen_height</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Windowed Size:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Width</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBox_3">
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="value">
+               <number>720</number>
+              </property>
+              <property name="config" stdset="0">
+               <string>window_width</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>Height</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBox_4">
+              <property name="maximum">
+               <number>999999</number>
+              </property>
+              <property name="value">
+               <number>480</number>
+              </property>
+              <property name="config" stdset="0">
+               <string>window_height</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Window Scale:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="doubleSpinBox">
+              <property name="minimum">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.250000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+              <property name="config" stdset="0">
+               <string>window_scale</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <property name="rightMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QCheckBox" name="checkBox_2">
+                <property name="text">
+                 <string>Hardware Display</string>
+                </property>
+                <property name="config" stdset="0">
+                 <string>hardware_display</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <property name="leftMargin">
+               <number>25</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_16">
+                  <property name="text">
+                   <string>Scaling Quality:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_2">
+                  <property name="currentIndex">
+                   <number>1</number>
+                  </property>
+                  <property name="config" stdset="0">
+                   <string>scale_quality</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Nearest Neighbor</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Linear</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Anisotropic</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_5">
+                <property name="text">
+                 <string>Use NN Scaling at integer scales</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="config" stdset="0">
+                 <string>use_nn_at_integer_scales</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox">
+                <property name="text">
+                 <string>Pause game when Steam overlay is open</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="config" stdset="0">
+                 <string>steam_overlay_pause</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QCheckBox" name="checkBox_4">
+                <property name="text">
+                 <string>Uncap FPS</string>
+                </property>
+                <property name="config" stdset="0">
+                 <string>uncap_fps</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_3">
+                <property name="text">
+                 <string>Show FPS</string>
+                </property>
+                <property name="config" stdset="0">
+                 <string>show_fps</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_6">
+              <property name="text">
+               <string>Minimize fullscreen on focus loss</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <property name="config" stdset="0">
+               <string>minimize_fullscreen_focus_loss</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="renderTab">
+      <attribute name="title">
+       <string>Rendering</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Map rendering</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QCheckBox" name="checkBox_8">
+            <property name="text">
+             <string>Landscape Smoothing</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="config" stdset="0">
+             <string>landscape_smoothing</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_9">
+            <property name="text">
+             <string>Always show Gridlines on Landscape</string>
+            </property>
+            <property name="config" stdset="0">
+             <string>always_show_gridlines</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_18">
+            <item>
+             <widget class="QLabel" name="label_17">
+              <property name="text">
+               <string>Construction Marker:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox_3">
+              <property name="config" stdset="0">
+               <string>construction_marker_colour</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Translucent</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_10">
+            <property name="text">
+             <string>Cycle day / night</string>
+            </property>
+            <property name="config" stdset="0">
+             <string>day_night_cycle</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_11">
+            <property name="text">
+             <string>Display text on banners in upper case</string>
+            </property>
+            <property name="config" stdset="0">
+             <string>upper_case_banners</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_39">
+         <property name="text">
+          <string>Use small font in debug console</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>interface/console_small_font</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="localTab">
+      <attribute name="title">
+       <string>Localization</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Language</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="languages">
+           <property name="configOffset" stdset="0">
+            <number>1</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>language</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>English (UK)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>English (US)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Deutsch</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Nederlands</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Français</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Magyar</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Polski</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Español</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Svenska</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Italiano</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Português (BR)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chinese (Traditional)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chinese (Simplified)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Suomi</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Korean</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Russian</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Czech</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Japanese</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Currency</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="currencies">
+           <property name="config" stdset="0">
+            <string>currency_format</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Pounds (£)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dollars ($)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Franc (F)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Deutschmark (DM)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Yen (¥)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Peseta (Pts)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Lira (L)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Guilders (fl.)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Krona (kr)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Euros (€)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>South Korean Won (W)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Russian Ruble (R)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Czech koruna (Kc)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Distance and Speed</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="measurements">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>measurement_format</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Imperial</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Metric</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SI</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Temperature</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="temperatures">
+           <property name="config" stdset="0">
+            <string>temperature_format</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Celsius (ºC)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Fahrenheit (ºF)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Date Format</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="dates">
+           <property name="config" stdset="0">
+            <string>date_format</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Day/Month/Year</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Month/Day/Year</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Year/Month/Day</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Year/Day/Month</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <property name="leftMargin">
+          <number>20</number>
+         </property>
+         <property name="rightMargin">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="checkBox_7">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Don't use real units for heights</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>show_height_as_units</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="soundTab">
+      <attribute name="title">
+       <string>Sound</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_20">
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Ouput Device:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="soundDevices">
+           <property name="config" stdset="0">
+            <string>sound/audio_device</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Default sound device</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <item>
+          <widget class="QCheckBox" name="checkBox_12">
+           <property name="text">
+            <string>Sound</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/sound</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="horizontalSlider">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/master_volume</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <widget class="QCheckBox" name="checkBox_13">
+           <property name="text">
+            <string>Music</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/ride_music</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="horizontalSlider_2">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/music_volume</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_14">
+         <property name="text">
+          <string>Disable audio on focus loss</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>sound/audio_focus</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Title screen music:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_4">
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/title_music</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>None</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 2</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Random title music</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Interface</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Controls</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QCheckBox" name="checkBox_15">
+            <property name="text">
+             <string>Scroll view when pointer at screen edge</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="config" stdset="0">
+             <string>edge_scrolling</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_21">
+            <item>
+             <widget class="QCheckBox" name="checkBox_16">
+              <property name="text">
+               <string>Trap mouse cursor in window</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>trap_cursor</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_17">
+              <property name="text">
+               <string>Invert right mouse dragging</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>invert_viewport_drag</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Themes</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_27">
+            <item>
+             <widget class="QLabel" name="label_25">
+              <property name="text">
+               <string>Theme:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="themes">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <property name="config" stdset="0">
+               <string>interface/current_theme</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>RollerCoaster Tycoon 1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>RollerCoaster Tycoon 2</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Toolbar</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>Show toolbar buttons for:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="2">
+             <widget class="QCheckBox" name="checkBox_20">
+              <property name="text">
+               <string>Cheats</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>interface/toolbar_show_cheats</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox_18">
+              <property name="text">
+               <string>Finances</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>interface/toolbar_show_finances</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="checkBox_19">
+              <property name="text">
+               <string>Research</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>interface/toolbar_show_research</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QCheckBox" name="checkBox_21">
+              <property name="text">
+               <string>Recent messages</string>
+              </property>
+              <property name="config" stdset="0">
+               <string>interface/toolbar_show_news</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_22">
+         <property name="text">
+          <string>Select rides by track type (like in RCT1)</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>interface/select_by_track_type</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_23">
+         <property name="text">
+          <string>Enable unlocking of scenarios</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>scenario_unlocking_enabled</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_22">
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>Group scenario list by:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_5">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>scenario_select_mode</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Difficulty level</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Source game</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_38">
+         <item>
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Window edge snapping distance:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_5">
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>5</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>window_snap_proximity</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Misc.</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <item>
+        <widget class="QCheckBox" name="checkBox_25">
+         <property name="text">
+          <string>Export plug-in objects with saved games</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>save_plugin_data</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_23">
+         <item>
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>Autosave frequency:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_6">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>autosave</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Every minute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Every 5 minutes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Every 15 minutes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Every 30 minutes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Every hour</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Never</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_26">
+         <property name="text">
+          <string>Allow testing of unfinished tracks</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>test_unfinished_tracks</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_41">
+         <property name="text">
+          <string>Don't let testing rides crash</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>no_test_crashes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_27">
+         <property name="text">
+          <string>Automatically place staff</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>auto_staff</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_28">
+         <property name="text">
+          <string>Handymen mow grass by default</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>handymen_mow_default</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_29">
+         <property name="text">
+          <string>Enable debugging tools</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>debugging_tools</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_24">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_26">
+           <property name="text">
+            <string>Title sequence:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="titleSequence">
+           <property name="currentIndex">
+            <number>4</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>interface/current_title_sequence</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 1 (CF)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 1 (CF + LL)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RollerCoaster Tycoon 2</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OpenRCT2</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_30">
+         <property name="text">
+          <string>Allow loading files with incorrect checksums</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>allow_loading_with_incorrect_checksum</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_31">
+         <property name="text">
+          <string>Stay connected after desynchronization (Multiplayer)</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>network/stay_connected</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_32">
+         <property name="text">
+          <string>Automatically open shops and stalls</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>auto_open_shops</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_26">
+         <item>
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>Screenshot format:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="screenshotFormat">
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>screenshot_format</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>BMP</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PNG</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_24">
+         <property name="text">
+          <string>Always prompt for save location</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>confirmation_prompt</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_38">
+         <property name="text">
+          <string>Show game intro</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>play_intro</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_42">
+         <property name="text">
+          <string>Hide RCT1 Mega Park when not unlocked</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>scenario_hide_mega_park</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Twitch</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_16">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_25">
+         <item>
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>Twitch Channel name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_2">
+           <property name="config" stdset="0">
+            <string>twitch/channel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_33">
+         <property name="text">
+          <string>Name guests after followers</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>twitch/follower_peep_names</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_34">
+         <property name="text">
+          <string>Track follower guests</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>twitch/follower_peep_tracking</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_35">
+         <property name="text">
+          <string>Name guests after people in Twitch chat</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>twitch/chat_peep_names</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_36">
+         <property name="text">
+          <string>Track chat guests</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="config" stdset="0">
+          <string>twitch/chat_peep_tracking</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_37">
+         <property name="text">
+          <string>Pull Twitch chat as news</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>twitch/news</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Network</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_17">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_28">
+         <item>
+          <widget class="QLabel" name="label_27">
+           <property name="text">
+            <string>Player Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_3">
+           <property name="text">
+            <string>Player</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/player_name</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_32">
+         <item>
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>Server Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_5">
+           <property name="text">
+            <string>Server</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/server_name</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_30">
+         <item>
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>Server Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_4">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/default_password</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_29">
+         <item>
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>Server Port:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox">
+           <property name="maximum">
+            <number>65535</number>
+           </property>
+           <property name="value">
+            <number>11753</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/default_port</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_31">
+         <item>
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Max number of player on server:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_2">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>16</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/maxplayers</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_40">
+         <property name="text">
+          <string>Advertise server on global server list</string>
+         </property>
+         <property name="config" stdset="0">
+          <string>network/advertise</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_33">
+         <item>
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>Server Description:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_6">
+           <property name="config" stdset="0">
+            <string>network/server_description</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_34">
+         <item>
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>Provider Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_7">
+           <property name="config" stdset="0">
+            <string>network/provider_name</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_35">
+         <item>
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>Provider Email:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_8">
+           <property name="config" stdset="0">
+            <string>network/provider_email</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_36">
+         <item>
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Provider Website:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_9">
+           <property name="config" stdset="0">
+            <string>network/provider_website</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_37">
+         <item>
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>Master Server Override:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_10">
+           <property name="config" stdset="0">
+            <string>network/master_server_url</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Configuration</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>335</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Configuration</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>328</x>
+     <y>335</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
