@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>720</width>
-    <height>482</height>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,22 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="launcherTab">
       <attribute name="title">
        <string>Launcher</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
@@ -63,9 +72,12 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>60</width>
              <height>20</height>
             </size>
            </property>
@@ -101,7 +113,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>160</width>
+             <width>40</width>
              <height>20</height>
             </size>
            </property>
@@ -129,6 +141,15 @@
        <string>Display</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
@@ -485,6 +506,15 @@
        <string>Rendering</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
@@ -595,6 +625,15 @@
        <string>Localization</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
@@ -934,6 +973,15 @@
        <string>Sound</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_5">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_20">
          <item>
@@ -958,22 +1006,62 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_16">
-         <item>
-          <widget class="QCheckBox" name="checkBox_12">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBox_13">
            <property name="text">
-            <string>Sound</string>
+            <string>Music</string>
            </property>
            <property name="checked">
             <bool>true</bool>
            </property>
            <property name="config" stdset="0">
-            <string>sound/sound</string>
+            <string>sound/ride_music</string>
            </property>
           </widget>
          </item>
-         <item>
+         <item row="1" column="2">
+          <widget class="QSlider" name="horizontalSlider_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string>sound/music_volume</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
           <widget class="QSlider" name="horizontalSlider">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximum">
             <number>100</number>
            </property>
@@ -988,38 +1076,44 @@
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_17">
-         <item>
-          <widget class="QCheckBox" name="checkBox_13">
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkBox_12">
            <property name="text">
-            <string>Music</string>
+            <string>Sound</string>
            </property>
            <property name="checked">
             <bool>true</bool>
            </property>
            <property name="config" stdset="0">
-            <string>sound/ride_music</string>
+            <string>sound/sound</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QSlider" name="horizontalSlider_2">
-           <property name="maximum">
-            <number>100</number>
-           </property>
-           <property name="value">
-            <number>100</number>
-           </property>
+         <item row="0" column="0">
+          <spacer name="horizontalSpacer_5">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="config" stdset="0">
-            <string>sound/music_volume</string>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
            </property>
-          </widget>
+          </spacer>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -1075,7 +1169,7 @@
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_5">
+        <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -1089,11 +1183,20 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="interfaceTab">
       <attribute name="title">
        <string>Interface</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_11">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
@@ -1101,17 +1204,21 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
-           <widget class="QCheckBox" name="checkBox_15">
-            <property name="text">
-             <string>Scroll view when pointer at screen edge</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-            <property name="config" stdset="0">
-             <string>edge_scrolling</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_17">
+            <item>
+             <widget class="QCheckBox" name="checkBox_15">
+              <property name="text">
+               <string>Scroll view when pointer at screen edge</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <property name="config" stdset="0">
+               <string>edge_scrolling</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -1317,6 +1424,18 @@
          </item>
          <item>
           <widget class="QSpinBox" name="spinBox_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximum">
             <number>255</number>
            </property>
@@ -1330,26 +1449,22 @@
          </item>
         </layout>
        </item>
-       <item>
-        <spacer name="verticalSpacer_6">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="miscTab">
       <attribute name="title">
        <string>Misc.</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_15">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <widget class="QCheckBox" name="checkBox_25">
          <property name="text">
@@ -1412,54 +1527,58 @@
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_26">
-         <property name="text">
-          <string>Allow testing of unfinished tracks</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>test_unfinished_tracks</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_41">
-         <property name="text">
-          <string>Don't let testing rides crash</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>no_test_crashes</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_27">
-         <property name="text">
-          <string>Automatically place staff</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>auto_staff</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_28">
-         <property name="text">
-          <string>Handymen mow grass by default</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>handymen_mow_default</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_29">
-         <property name="text">
-          <string>Enable debugging tools</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>debugging_tools</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkBox_41">
+           <property name="text">
+            <string>Don't let testing rides crash</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>no_test_crashes</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBox_27">
+           <property name="text">
+            <string>Automatically place staff</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>auto_staff</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBox_26">
+           <property name="text">
+            <string>Allow testing of unfinished tracks</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>test_unfinished_tracks</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBox_28">
+           <property name="text">
+            <string>Handymen mow grass by default</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>handymen_mow_default</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBox_29">
+           <property name="text">
+            <string>Enable debugging tools</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>debugging_tools</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_24">
@@ -1607,13 +1726,35 @@
          </property>
         </widget>
        </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="twitchTab">
       <attribute name="title">
        <string>Twitch</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_16">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_25">
          <item>
@@ -1625,61 +1766,90 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEdit_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="config" stdset="0">
             <string>twitch/channel</string>
            </property>
           </widget>
          </item>
+         <item>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_33">
-         <property name="text">
-          <string>Name guests after followers</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="config" stdset="0">
-          <string>twitch/follower_peep_names</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_34">
-         <property name="text">
-          <string>Track follower guests</string>
-         </property>
-         <property name="config" stdset="0">
-          <string>twitch/follower_peep_tracking</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_35">
-         <property name="text">
-          <string>Name guests after people in Twitch chat</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="config" stdset="0">
-          <string>twitch/chat_peep_names</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_36">
-         <property name="text">
-          <string>Track chat guests</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="config" stdset="0">
-          <string>twitch/chat_peep_tracking</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBox_33">
+           <property name="text">
+            <string>Name guests after followers</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="config" stdset="0">
+            <string>twitch/follower_peep_names</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBox_36">
+           <property name="text">
+            <string>Track chat guests</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="config" stdset="0">
+            <string>twitch/chat_peep_tracking</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkBox_34">
+           <property name="text">
+            <string>Track follower guests</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>twitch/follower_peep_tracking</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBox_35">
+           <property name="text">
+            <string>Name guests after people in Twitch chat</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="config" stdset="0">
+            <string>twitch/chat_peep_names</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_37">
@@ -1706,112 +1876,46 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_4">
+     <widget class="QWidget" name="networkTab">
       <attribute name="title">
        <string>Network</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_17">
+       <property name="leftMargin">
+        <number>120</number>
+       </property>
+       <property name="rightMargin">
+        <number>120</number>
+       </property>
+       <property name="bottomMargin">
+        <number>12</number>
+       </property>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_28">
-         <item>
-          <widget class="QLabel" name="label_27">
-           <property name="text">
-            <string>Player Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_3">
-           <property name="text">
-            <string>Player</string>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/player_name</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_32">
-         <item>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_31">
            <property name="text">
             <string>Server Name</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_5">
-           <property name="text">
-            <string>Server</string>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/server_name</string>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_30">
-         <item>
-          <widget class="QLabel" name="label_29">
-           <property name="text">
-            <string>Server Password:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_4">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="echoMode">
-            <enum>QLineEdit::Password</enum>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/default_password</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_29">
-         <item>
-          <widget class="QLabel" name="label_28">
-           <property name="text">
-            <string>Server Port:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="spinBox">
-           <property name="maximum">
-            <number>65535</number>
-           </property>
-           <property name="value">
-            <number>11753</number>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/default_port</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_31">
-         <item>
-          <widget class="QLabel" name="label_30">
-           <property name="text">
-            <string>Max number of player on server:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
+         <item row="4" column="1">
           <widget class="QSpinBox" name="spinBox_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="minimum">
             <number>1</number>
            </property>
@@ -1825,6 +1929,153 @@
             <string>network/maxplayers</string>
            </property>
           </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Server</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/server_name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Max number of player on server:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>Server Password:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_27">
+           <property name="text">
+            <string>Player Name:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="spinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>65535</number>
+           </property>
+           <property name="value">
+            <number>11753</number>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/default_port</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Player</string>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/player_name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string>network/default_password</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>Server Port:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -1846,87 +2097,71 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_33">
-         <item>
-          <widget class="QLabel" name="label_32">
-           <property name="text">
-            <string>Server Description:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_6">
-           <property name="config" stdset="0">
-            <string>network/server_description</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_34">
-         <item>
-          <widget class="QLabel" name="label_33">
-           <property name="text">
-            <string>Provider Name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_7">
-           <property name="config" stdset="0">
-            <string>network/provider_name</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_35">
-         <item>
-          <widget class="QLabel" name="label_34">
-           <property name="text">
-            <string>Provider Email:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_8">
-           <property name="config" stdset="0">
-            <string>network/provider_email</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_36">
-         <item>
-          <widget class="QLabel" name="label_35">
-           <property name="text">
-            <string>Provider Website:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="3" column="1">
           <widget class="QLineEdit" name="lineEdit_9">
            <property name="config" stdset="0">
             <string>network/provider_website</string>
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_37">
-         <item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_7">
+           <property name="config" stdset="0">
+            <string>network/provider_name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>Server Description:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Provider Website:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>Provider Email:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_6">
+           <property name="config" stdset="0">
+            <string>network/server_description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_8">
+           <property name="config" stdset="0">
+            <string>network/provider_email</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>Provider Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
           <widget class="QLabel" name="label_36">
            <property name="text">
             <string>Master Server Override:</string>
            </property>
           </widget>
          </item>
-         <item>
+         <item row="4" column="1">
           <widget class="QLineEdit" name="lineEdit_10">
            <property name="config" stdset="0">
             <string>network/master_server_url</string>
@@ -1934,6 +2169,19 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
