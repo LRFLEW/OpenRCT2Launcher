@@ -2,6 +2,7 @@
 #define CONFIGURATION_H
 
 #include <QDialog>
+#include <QMap>
 #include <QSettings>
 
 namespace Ui {
@@ -23,6 +24,7 @@ private:
     Ui::Configuration *ui;
     void setComboBoxData();
     QSettings config;
+    QMap<QString, QString> langEquiv;
 };
 
 #endif // CONFIGURATION_H

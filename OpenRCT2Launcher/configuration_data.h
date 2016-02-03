@@ -64,6 +64,10 @@ void Configuration::setComboBoxData() {
     ui->titleSequence->setItemData(4, QStringLiteral("*OPENRCT2"));
 
     ui->soundDevices->setItemData(0, QStringLiteral(""));
+
+    langEquiv.insert("en-CA", "en-US");
+    langEquiv.insert("zh-CN", "zh-Hant");
+    langEquiv.insert("zh-TW", "zh-Hans");
 }
 
 #endif // CONFIGURATION_DATA_H

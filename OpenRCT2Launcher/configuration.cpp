@@ -112,6 +112,64 @@ Configuration::Configuration(QString file, QWidget *parent) :
         ui->fullscreenWidth->setValue(display.width());
         ui->fullscreenHeight->setValue(display.height());
     }
+
+    // Locale Stuff
+    {
+        QLocale locale;
+        if (!config.value("language").isValid()) {
+            QString name = locale.name();
+            name = name.replace('_', '-');
+            int ind = ui->languages->findData(langEquiv.value(name, name), Qt::UserRole, Qt::MatchExactly);
+
+            if (ind < 0) {
+                QStringList languages = locale.uiLanguages();
+                for (QString lang : languages) {
+                    lang = lang.replace('_', '-');
+                    ind = ui->languages->findData(langEquiv.value(lang, lang), Qt::UserRole, Qt::MatchExactly);
+                    if (ind >= 0) break;
+                }
+            }
+
+            if (ind < 0) {
+                QStringList languages = locale.uiLanguages();
+                for (QString lang : languages) {
+                    lang = lang.replace('_', '-');
+                    if (lang.contains('-')) lang.truncate(lang.indexOf('-'));
+                    ind = ui->languages->findData(lang, Qt::UserRole, Qt::MatchStartsWith);
+                    if (ind >= 0) break;
+                }
+            }
+
+            ui->languages->setCurrentIndex(ind);
+        }
+        if (!config.value("currency_format").isValid()) {
+            int ind = ui->currencies->findData(locale.currencySymbol(QLocale::CurrencyIsoCode));
+            if (ind >= 0) ui->currencies->setCurrentIndex(ind);
+        }
+        if (!config.value("measurement_format").isValid()) {
+            ui->measurements->setCurrentIndex((locale.measurementSystem() == QLocale::MetricSystem) ? 1 : 0);
+        }
+        if (!config.value("temperature_format").isValid()) {
+            ui->temperatures->setCurrentIndex((locale.measurementSystem() == QLocale::ImperialUSSystem) ? 1 : 0);
+        }
+        if (!config.value("date_format").isValid()) {
+            QString df = locale.dateFormat();
+            // dateFormat is not quite what we need, so I'll translate it
+            int day = df.indexOf('d', 0, Qt::CaseInsensitive);
+            int month = df.indexOf('M', 0, Qt::CaseInsensitive);
+            int year = df.indexOf('y', 0, Qt::CaseInsensitive);
+            // Assume that if year is not first, it's last
+            if (day >= 0 && month >= 0 && year >= 0) {
+                if (month < day) {
+                    if (year < month) ui->dates->setCurrentIndex(2);
+                    else ui->dates->setCurrentIndex(1);
+                } else {
+                    if (year < day) ui->dates->setCurrentIndex(3);
+                    else ui->dates->setCurrentIndex(0);
+                }
+            }
+        }
+    }
 }
 
 Configuration::~Configuration()
