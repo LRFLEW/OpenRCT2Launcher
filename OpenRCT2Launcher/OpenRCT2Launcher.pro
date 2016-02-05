@@ -9,6 +9,8 @@ QT       += core gui widgets network multimedia
 TARGET = OpenRCT2
 TEMPLATE = app
 
+VERSION = v0.0.2
+
 
 SOURCES  += main.cpp\
             mainwindow.cpp \
@@ -31,6 +33,8 @@ CONFIG += c++11
 # the libarchive code is intentionally using deprecated code
 # to maintain compatibility with libarchive 2
 QMAKE_CXXFLAGS += -Wno-deprecated-declarations
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 macx {
     INCLUDEPATH += /usr/local/opt/libarchive/include

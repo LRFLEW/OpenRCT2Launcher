@@ -3,8 +3,6 @@
 
 #include <QtGlobal>
 
-#define LAUNCHER_VERSION_STRING "v0.0.2"
-
 #ifndef Q_PROCESSOR_X86
 #error Needs x86 to run OpenRCT2
 #endif
