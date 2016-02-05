@@ -1,6 +1,14 @@
 #include "updater.h"
 #include "platform.h"
 
+#ifdef Q_OS_LINUX
+#include "archives/gzipreadfilter.h"
+#include "archives/tarextractor.h"
+#else
+#include "archives/zipextractor.h"
+#endif
+
+#include <QBuffer>
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFileInfo>
@@ -99,79 +107,30 @@ void Updater::receivedBundle() {
         bin.mkpath(".");
     } else {
         bin.mkpath(OPENRCT2_BIN);
+        if (!bin.cd(OPENRCT2_BIN)) emit error(QStringLiteral("Unable to create bin folder"));
     }
 
-    if (extract(data)) {
+    if (extract(data, bin)) {
         emit installed();
 
         QSettings settings;
         settings.setValue("downloadId", version);
         settings.setValue("gitHash", githash);
+    } else {
+        emit error(QStringLiteral("Unable to extract Tar"));
     }
 }
 
 void Updater::errorReply(QNetworkReply::NetworkError code) {
-    emit error(QString("Network Error ") + code + ": " + reply->errorString());
+    emit error(QStringLiteral("Network Error ") + code + QStringLiteral(": ") + reply->errorString());
 }
 
-bool Updater::extract(QByteArray &data) {
-    struct archive *a = archive_read_new();
-
+bool Updater::extract(QByteArray &data, QDir &bin) {
+    QBuffer buffer(&data);
 #ifdef Q_OS_LINUX
-    archive_read_support_compression_gzip(a);
-    archive_read_support_format_tar(a);
+    GZipReadFilter gzip(&buffer);
+    return extractTar(&gzip, bin);
 #else
-    archive_read_support_format_zip(a);
+    return extractZip(&buffer, bin);
 #endif
-
-    int r = archive_read_open_memory(a, data.data(), data.size());
-    if (r != ARCHIVE_OK) {
-        emit error(archive_error_string(a));
-        return false;
-    }
-
-    struct archive_entry *entry;
-    char buffer[4096];
-    QDir bin(QDir::home());
-    bin.cd(OPENRCT2_BIN);
-    while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
-        quint16 type = archive_entry_filetype(entry);
-        QString name = archive_entry_pathname(entry);
-
-#ifdef Q_OS_LINUX
-        if (name.startsWith("OpenRCT2/")) {
-            name.remove(0, 9);
-            if (name.isEmpty()) continue;
-        }
-#endif
-
-        if (type == AE_IFDIR) {
-            bin.mkdir(name);
-        } else if (type == AE_IFREG) {
-            QFileInfo info(bin, name);
-            QFile file(info.absoluteFilePath());
-            file.open(QFile::WriteOnly);
-
-            size_t read;
-            do {
-                read = archive_read_data(a, buffer, 4096);
-                file.write(buffer, read);
-            } while (read != 0);
-            file.close();
-
-            int perm = archive_entry_mode(entry) & ~AE_IFMT;
-            file.setPermissions(static_cast<QFile::Permissions>(((perm & 0700) << 6) | ((perm & 0700) << 2) | ((perm & 0070) << 1) | (perm & 0007)));
-        } else {
-            emit error("Unknown file type");
-            return false;
-        }
-    }
-
-    r = archive_read_finish(a);
-    if (r != ARCHIVE_OK) {
-        emit error(archive_error_string(a));
-        return false;
-    }
-
-    return true;
 }

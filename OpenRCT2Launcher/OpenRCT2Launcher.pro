@@ -13,18 +13,24 @@ VERSION = v0.0.2
 
 
 SOURCES  += main.cpp\
-            mainwindow.cpp \
-            updater.cpp \
-            configuration.cpp
+    mainwindow.cpp \
+    updater.cpp \
+    configuration.cpp \
+    archives/zipextractor.cpp \
+    archives/gzipreadfilter.cpp \
+    archives/tarextractor.cpp
 
 HEADERS  += mainwindow.h \
-            updater.h \
-            platform.h \
-            configuration.h \
-    configuration_data.h
+    updater.h \
+    platform.h \
+    configuration.h \
+    configuration_data.h \
+    archives/zipextractor.h \
+    archives/gzipreadfilter.h \
+    archives/tarextractor.h
 
 FORMS    += mainwindow.ui \
-            configuration.ui
+    configuration.ui
 
 RESOURCES += resources.qrc
 
@@ -41,4 +47,4 @@ macx {
     ICON = Icon/OpenRCT2.icns
 }
 
-LIBS += -larchive
+LIBS += -lz

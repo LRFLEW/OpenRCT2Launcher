@@ -27,7 +27,7 @@ private slots:
     void errorReply(QNetworkReply::NetworkError code);
 
 private:
-    bool extract(QByteArray &data);
+    bool extract(QByteArray &data, QDir &bin);
 
     QUrl url;
     QNetworkAccessManager net;
