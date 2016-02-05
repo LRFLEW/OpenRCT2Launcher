@@ -16,6 +16,18 @@ Configuration::Configuration(QString file, QWidget *parent) :
     ui->setupUi(this);
     setComboBoxData();
 
+    {
+        QSettings main;
+
+        ui->launcherVersionMsg->setText(QStringLiteral("Launcher Version: " LAUNCHER_VERSION_STRING));
+
+        QVariant build = main.value("downloadId");
+        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") + build.toString());
+
+        QVariant hash = main.value("gitHash");
+        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
+    }
+
     for (QLineEdit *w : ui->tabWidget->findChildren<QLineEdit *>()) {
         QVariant setting = w->property("config");
         if (setting.isValid()) {
