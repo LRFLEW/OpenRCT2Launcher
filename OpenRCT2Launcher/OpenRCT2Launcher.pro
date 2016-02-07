@@ -34,14 +34,12 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += resources.qrc
 
+
 CONFIG += c++11
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
-macx {
-    INCLUDEPATH += /usr/local/opt/libarchive/include
-    ICON = Icon/OpenRCT2.icns
-}
+macx:ICON = Icon/OpenRCT2.icns
 
 # Use Qt5's Zlib if avaiable, otherwise use system's
 exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
