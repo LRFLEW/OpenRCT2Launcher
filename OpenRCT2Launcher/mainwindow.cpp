@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->setHidden(true);
     connect(ui->launchButton, &QPushButton::clicked, this, &MainWindow::launch);
 
+#ifndef Q_OS_OSX
+    ui->splash->setScaledContents(true);
+#endif
+
     connect(&updater, &Updater::installed, [this]{ ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
     connect(&updater, &Updater::error, [this](QString error){ ui->errorLabel->setText(error); ui->launchButton->setEnabled(true); });
     connect(&updater, &Updater::downloadProgress, [this](qint64 bytesReceived, qint64 bytesTotal){
@@ -28,7 +32,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-#include <QFileDialog>
 void MainWindow::on_optionsButton_clicked() {
     QDir dir = QDir::home();
     if (dir.cd(OPENRCT2_BASE)) {
