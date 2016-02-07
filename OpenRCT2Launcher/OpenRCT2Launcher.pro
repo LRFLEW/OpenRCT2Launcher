@@ -9,7 +9,7 @@ QT       += core gui widgets network multimedia
 TARGET = OpenRCT2
 TEMPLATE = app
 
-VERSION = v0.0.2
+VERSION = 0.0.2
 
 
 SOURCES  += main.cpp\
@@ -36,10 +36,6 @@ RESOURCES += resources.qrc
 
 CONFIG += c++11
 
-# the libarchive code is intentionally using deprecated code
-# to maintain compatibility with libarchive 2
-QMAKE_CXXFLAGS += -Wno-deprecated-declarations
-
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 macx {
@@ -47,4 +43,9 @@ macx {
     ICON = Icon/OpenRCT2.icns
 }
 
-LIBS += -lz
+# Use Qt5's Zlib if avaiable, otherwise use system's
+exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
+    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+} else {
+    LIBS += -lz
+}

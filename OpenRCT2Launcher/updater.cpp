@@ -20,9 +20,6 @@
 #include <QTemporaryFile>
 #include <QUrlQuery>
 
-#include <archive.h>
-#include <archive_entry.h>
-
 Updater::Updater(QObject *parent) : QObject(parent)
 {
     url = "https://openrct2.org/altapi/";

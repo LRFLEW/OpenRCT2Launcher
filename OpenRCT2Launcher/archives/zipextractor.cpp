@@ -55,9 +55,8 @@ bool extractZip(QIODevice *in, QDir extractLoc) {
             quint16 namelen, extralen;
             stream >> namelen >> extralen;
 
-            namebuf.resize(namelen + 1);
+            namebuf.resize(namelen);
             stream.readRawData(namebuf.data(), namelen);
-            namebuf[namelen] = 0;
             QString name = QString::fromUtf8(namebuf, namelen);
 
             stream.skipRawData(extralen); // Ignore Extra Field
@@ -146,9 +145,8 @@ bool extractZip(QIODevice *in, QDir extractLoc) {
 
                 stream.skipRawData(4);
 
-                char namebuf[namelen + 1];
-                stream.readRawData(namebuf, namelen);
-                namebuf[namelen] = 0;
+                namebuf.resize(namelen);
+                stream.readRawData(namebuf.data(), namelen);
                 QString name = QString::fromUtf8(namebuf, namelen);
 
                 if ((type >> 12) == 8 || (type >> 12) == 4) {

@@ -46,7 +46,7 @@ void MainWindow::on_optionsButton_clicked() {
 }
 
 void MainWindow::launch() {
-    if (QProcess::startDetached(OPENRCT2_EXEC_LOCATION, QStringList(), QDir::homePath())) {
+    if (QProcess::startDetached(QDir::home().filePath(OPENRCT2_EXEC_LOCATION), QStringList(), QDir::homePath())) {
         QApplication::quit();
     } else {
         ui->errorLabel->setText("Unable to Launch Game");

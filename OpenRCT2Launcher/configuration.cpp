@@ -19,7 +19,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
     {
         QSettings main;
 
-        ui->launcherVersionMsg->setText(QStringLiteral("Launcher Version: " APP_VERSION));
+        ui->launcherVersionMsg->setText("Launcher Version: " APP_VERSION);
 
         QVariant build = main.value("downloadId");
         if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") + build.toString());
