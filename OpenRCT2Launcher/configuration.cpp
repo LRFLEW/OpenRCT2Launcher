@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QScreen>
+#include <QStringBuilder>
 
 Configuration::Configuration(QString file, QWidget *parent) :
     QDialog(parent),
@@ -19,13 +20,13 @@ Configuration::Configuration(QString file, QWidget *parent) :
     {
         QSettings main;
 
-        ui->launcherVersionMsg->setText("Launcher Version: " APP_VERSION);
+        ui->launcherVersionMsg->setText(QStringLiteral(CON("Launcher Version: ", APP_VERSION)));
 
-        QVariant build = main.value("downloadId");
-        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") + build.toString());
+        QVariant build = main.value(QStringLiteral("downloadId"));
+        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") % build.toString());
 
-        QVariant hash = main.value("gitHash");
-        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
+        QVariant hash = main.value(QStringLiteral("gitHash"));
+        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") % hash.toByteArray().left(4).toHex().left(7));
     }
 
     for (QLineEdit *w : ui->tabWidget->findChildren<QLineEdit *>()) {
@@ -77,9 +78,9 @@ Configuration::Configuration(QString file, QWidget *parent) :
 
     {
         QDir themesDir = QDir::home();
-        if (themesDir.cd(OPENRCT2_BASE "themes")) {
+        if (themesDir.cd(QStringLiteral(CON(OPENRCT2_BASE, "themes")))) {
             // remove ini when json is merged
-            QFileInfoList themes = themesDir.entryInfoList({"*.ini", "*.json"},
+            QFileInfoList themes = themesDir.entryInfoList({QStringLiteral("*.ini"), QStringLiteral("*.json")},
                     QDir::Files | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
             for (QFileInfo &info : themes) {
                 ui->themes->addItem(info.baseName(), QVariant(info.baseName()));
@@ -89,11 +90,11 @@ Configuration::Configuration(QString file, QWidget *parent) :
 
     {
         QDir themesDir = QDir::home();
-        if (themesDir.cd(OPENRCT2_BASE "title sequences")) {
+        if (themesDir.cd(QStringLiteral(CON(OPENRCT2_BASE, "title sequences")))) {
             QFileInfoList themes = themesDir.entryInfoList(
                     QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
             for (QFileInfo &info : themes) {
-                if (QFile::exists(QDir(info.filePath()).filePath("script.txt")))
+                if (QFile::exists(QDir(info.filePath()).filePath(QStringLiteral("script.txt"))))
                     ui->titleSequence->addItem(info.baseName(), QVariant(info.baseName()));
             }
         }
@@ -128,7 +129,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
     // Locale Stuff
     {
         QLocale locale;
-        if (!config.value("language").isValid()) {
+        if (!config.value(QStringLiteral("language")).isValid()) {
             QString name = locale.name();
             name = name.replace('_', '-');
             int ind = ui->languages->findData(langEquiv.value(name, name), Qt::UserRole, Qt::MatchExactly);
@@ -154,17 +155,17 @@ Configuration::Configuration(QString file, QWidget *parent) :
 
             ui->languages->setCurrentIndex(ind);
         }
-        if (!config.value("currency_format").isValid()) {
+        if (!config.value(QStringLiteral("currency_format")).isValid()) {
             int ind = ui->currencies->findData(locale.currencySymbol(QLocale::CurrencyIsoCode));
             if (ind >= 0) ui->currencies->setCurrentIndex(ind);
         }
-        if (!config.value("measurement_format").isValid()) {
+        if (!config.value(QStringLiteral("measurement_format")).isValid()) {
             ui->measurements->setCurrentIndex((locale.measurementSystem() == QLocale::MetricSystem) ? 1 : 0);
         }
-        if (!config.value("temperature_format").isValid()) {
+        if (!config.value(QStringLiteral("temperature_format")).isValid()) {
             ui->temperatures->setCurrentIndex((locale.measurementSystem() == QLocale::ImperialUSSystem) ? 1 : 0);
         }
-        if (!config.value("date_format").isValid()) {
+        if (!config.value(QStringLiteral("date_format")).isValid()) {
             QString df = locale.dateFormat();
             // dateFormat is not quite what we need, so I'll translate it
             int day = df.indexOf('d', 0, Qt::CaseInsensitive);

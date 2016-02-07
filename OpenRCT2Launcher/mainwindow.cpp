@@ -34,21 +34,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_optionsButton_clicked() {
     QDir dir = QDir::home();
-    if (dir.cd(OPENRCT2_BASE)) {
-        if (!dir.exists()) dir.mkpath(OPENRCT2_BASE);
+    if (dir.cd(QStringLiteral(OPENRCT2_BASE))) {
+        if (!dir.exists()) dir.mkpath(QStringLiteral(OPENRCT2_BASE));
     } else {
-        dir.mkpath(OPENRCT2_BASE);
-        dir.cd(OPENRCT2_BASE);
+        dir.mkpath(QStringLiteral(OPENRCT2_BASE));
+        dir.cd(QStringLiteral(OPENRCT2_BASE));
     }
 
-    Configuration config(dir.filePath("config.ini"));
+    Configuration config(dir.filePath(QStringLiteral("config.ini")));
     config.exec();
 }
 
 void MainWindow::launch() {
-    if (QProcess::startDetached(QDir::home().filePath(OPENRCT2_EXEC_LOCATION), QStringList(), QDir::homePath())) {
+    if (QProcess::startDetached(QDir::home().filePath(QStringLiteral(OPENRCT2_EXEC_LOCATION)), QStringList(), QDir::homePath())) {
         QApplication::quit();
     } else {
-        ui->errorLabel->setText("Unable to Launch Game");
+        ui->errorLabel->setText(QStringLiteral("Unable to Launch Game"));
     }
 }
