@@ -7,7 +7,6 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QScreen>
-#include <QStringBuilder>
 
 Configuration::Configuration(QString file, QWidget *parent) :
     QDialog(parent),
@@ -23,10 +22,10 @@ Configuration::Configuration(QString file, QWidget *parent) :
         ui->launcherVersionMsg->setText(QStringLiteral(CON("Launcher Version: ", APP_VERSION)));
 
         QVariant build = main.value(QStringLiteral("downloadId"));
-        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") % build.toString());
+        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") + build.toString());
 
         QVariant hash = main.value(QStringLiteral("gitHash"));
-        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") % hash.toByteArray().left(4).toHex().left(7));
+        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
     }
 
     for (QLineEdit *w : ui->tabWidget->findChildren<QLineEdit *>()) {
