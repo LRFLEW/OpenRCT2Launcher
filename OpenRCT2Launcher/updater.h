@@ -21,17 +21,16 @@ signals:
 public slots:
     void download();
 
-private slots:
-    void receivedAPI();
-    void receivedBundle();
-    void errorReply(QNetworkReply::NetworkError code);
+private:
+    void receivedUpdate(QNetworkReply *reply);
+    void receivedAPI(QNetworkReply *reply);
+    void receivedBundle(QNetworkReply *reply);
 
 private:
     bool extract(QByteArray &data, QDir &bin);
 
     QUrl url;
     QNetworkAccessManager net;
-    QNetworkReply *reply;
     int size;
     QByteArray hash;
     QByteArray githash;

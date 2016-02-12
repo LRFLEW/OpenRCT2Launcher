@@ -15,11 +15,10 @@
 #define OPENRCT2_EXEC_NAME "openrct2.exe"
 
 // Workaround for QStringLiteral concatenation issue
-
 #define OPENRCT2_BIN "Documents/OpenRCT2/bin/"
 #define OPENRCT2_EXEC_LOCATION "Documents/OpenRCT2/bin/openrct2.exe"
-
-#define CON(a, b) a QT_UNICODE_LITERAL(b)
+#define OPENRCT2_THEMES_LOCATION "Documents/OpenRCT2/themes"
+#define OPENRCT2_TITLE_LOCATION "Documents/OpenRCT2/title sequences"
 
 #elif defined(Q_OS_OSX)
 
@@ -39,12 +38,11 @@
 
 #endif
 
-#ifndef CON
-
+#ifndef Q_OS_WIN
 #define OPENRCT2_BIN OPENRCT2_BASE "bin/"
 #define OPENRCT2_EXEC_LOCATION OPENRCT2_BIN OPENRCT2_EXEC_NAME
-
-#define CON(a, b) a b
+#define OPENRCT2_THEMES_LOCATION OPENRCT2_BIN "themes"
+#define OPENRCT2_TITLE_LOCATION "title sequences"
 #endif
 
 #endif // PLATFORM_H

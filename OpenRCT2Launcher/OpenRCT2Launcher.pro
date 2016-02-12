@@ -9,7 +9,7 @@ QT       += core gui widgets network multimedia
 TARGET = OpenRCT2
 TEMPLATE = app
 
-VERSION = 0.0.2
+VERSION = 0.0.3
 
 
 SOURCES  += main.cpp\

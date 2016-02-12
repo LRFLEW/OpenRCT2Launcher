@@ -19,13 +19,13 @@ Configuration::Configuration(QString file, QWidget *parent) :
     {
         QSettings main;
 
-        ui->launcherVersionMsg->setText(QStringLiteral(CON("Launcher Version: ", APP_VERSION)));
+        ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION));
 
         QVariant build = main.value(QStringLiteral("downloadId"));
-        if (build.isValid()) ui->buildVersionMsg->setText(QStringLiteral("OpenRCT2 Build: ") + build.toString());
+        if (build.isValid()) ui->buildVersionMsg->setText(tr("OpenRCT2 Build: ") + build.toString());
 
         QVariant hash = main.value(QStringLiteral("gitHash"));
-        if (build.isValid()) ui->buildHashMsg->setText(QStringLiteral("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
+        if (build.isValid()) ui->buildHashMsg->setText(tr("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
     }
 
     for (QLineEdit *w : ui->tabWidget->findChildren<QLineEdit *>()) {
@@ -77,7 +77,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
 
     {
         QDir themesDir = QDir::home();
-        if (themesDir.cd(QStringLiteral(CON(OPENRCT2_BASE, "themes")))) {
+        if (themesDir.cd(QStringLiteral(OPENRCT2_THEMES_LOCATION))) {
             // remove ini when json is merged
             QFileInfoList themes = themesDir.entryInfoList({QStringLiteral("*.ini"), QStringLiteral("*.json")},
                     QDir::Files | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
@@ -89,7 +89,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
 
     {
         QDir themesDir = QDir::home();
-        if (themesDir.cd(QStringLiteral(CON(OPENRCT2_BASE, "title sequences")))) {
+        if (themesDir.cd(OPENRCT2_TITLE_LOCATION)) {
             QFileInfoList themes = themesDir.entryInfoList(
                     QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
             for (QFileInfo &info : themes) {
@@ -238,7 +238,7 @@ Configuration::~Configuration()
 }
 
 void Configuration::on_locateRCT2_clicked() {
-    QString rct2 =  QFileDialog::getExistingDirectory(this, QStringLiteral("Select RCT2 Install Location"),
+    QString rct2 =  QFileDialog::getExistingDirectory(this, tr("Select RCT2 Install Location"),
                                                       QDir::homePath(), QFileDialog::ShowDirsOnly);
     if (!rct2.isEmpty()) ui->rct2Path->setText(rct2);
 }

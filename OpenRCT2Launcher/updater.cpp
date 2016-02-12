@@ -14,6 +14,7 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QMessageBox>
 #include <QNetworkRequest>
 #include <QProcess>
 #include <QSettings>
@@ -32,27 +33,71 @@ Updater::Updater(QObject *parent) : QObject(parent), url(QStringLiteral("https:/
 }
 
 void Updater::download() {
+    QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
+    QNetworkReply *ureply = net.get(urequest);
+    connect(ureply, &QNetworkReply::finished, this, [this, ureply]() { receivedUpdate(ureply); });
+
     QNetworkRequest request(url);
-    reply = net.get(request);
-    connect(reply, &QNetworkReply::finished, this, &Updater::receivedAPI);
-    connect(reply, static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), this, &Updater::errorReply);
+    QNetworkReply *reply = net.get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() { receivedAPI(reply); });
 }
 
-void Updater::receivedAPI() {
+void Updater::receivedUpdate(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        errorReply(reply->error());
+        emit error(QStringLiteral("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
         return;
     }
 
     QByteArray data = reply->readAll();
     reply->close();
     reply->deleteLater();
-    reply = nullptr;
+
+    QJsonDocument response = QJsonDocument::fromJson(data);
+    QJsonObject robj = response.object();
+    QString tag = robj[QStringLiteral("tag_name")].toString();
+
+    if (tag.startsWith('v')) {
+        QStringRef ver = tag.midRef(1);
+        if (ver.compare(QLatin1String(APP_VERSION)) > 0) {
+            // Show Update Notification
+            QMessageBox msg;
+            msg.setText(QStringLiteral("<font size=4>") % tr("New Update is Available") % QStringLiteral("</font>"));
+            msg.setInformativeText(
+                        QStringLiteral("<font size=4 style=\"white-space:nowrap;\" align=center><p>") %
+                        tr("There is a new update available for the launcher.") %
+                        QStringLiteral("<br />") %
+                        tr("It is recomended that you update.") %
+                        QStringLiteral("</p><p>") %
+                        tr("Installed Version: ") %
+                        QStringLiteral(APP_VERSION) %
+                        QStringLiteral("<br />") %
+                        tr("Latest Version: ") %
+                        ver %
+                        QStringLiteral("</p><p><a href=\"") %
+                        robj[QStringLiteral("html_url")].toString() %
+                        QStringLiteral("\">") %
+                        tr("Download Page") %
+                        QStringLiteral("</a></p></font>"));
+            msg.setMinimumWidth(1000);
+            msg.exec();
+        }
+    }
+}
+
+void Updater::receivedAPI(QNetworkReply *reply) {
+    if (reply->error() != QNetworkReply::NoError) {
+        emit error(tr("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
+        return;
+    }
+
+    QByteArray data = reply->readAll();
+    reply->close();
+    reply->deleteLater();
 
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
     if (robj[QStringLiteral("error")].toInt() != 0) {
-        emit error(QStringLiteral("Server Error:") + robj[QStringLiteral("errorMessage")].toString());
+        emit error(tr("Server Error:") + robj[QStringLiteral("errorMessage")].toString());
         return;
     }
 
@@ -68,42 +113,46 @@ void Updater::receivedAPI() {
         githash = QByteArray::fromHex(robj[QStringLiteral("gitHash")].toString().toLatin1());
 
         QNetworkRequest request(robj[QStringLiteral("url")].toString());
-        reply = net.get(request);
-        connect(reply, &QNetworkReply::finished, this, &Updater::receivedBundle);
-        connect(reply, static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), this, &Updater::errorReply);
-        connect(reply, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
+        QNetworkReply *dreply = net.get(request);
+        connect(dreply, &QNetworkReply::finished, this, [this, dreply]() { this->receivedBundle(dreply); });
+        connect(dreply, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
     }
 }
 
-void Updater::receivedBundle() {
+void Updater::receivedBundle(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        errorReply(reply->error());
+        emit error(tr("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
         return;
     }
 
     QByteArray data = reply->readAll();
     reply->close();
     reply->deleteLater();
-    reply = nullptr;
 
     if (data.size() != size) {
-        emit error(QStringLiteral("Invalid File Downloaded"));
+        emit error(tr("Invalid File Downloaded"));
         return;
     }
 
     QByteArray fhash = QCryptographicHash::hash(data, QCryptographicHash::Algorithm::Sha256);
     if (fhash != hash) {
-        emit error(QStringLiteral("Invalid File Downloaded"));
+        emit error(tr("Invalid File Downloaded"));
         return;
     }
 
     QDir bin = QDir::home();
     if (bin.cd(QStringLiteral(OPENRCT2_BIN))) {
         bin.removeRecursively();
-        bin.mkpath(QStringLiteral("."));
+        if (!bin.mkpath(QStringLiteral("."))) {
+            emit error(tr("Unable to create bin folder"));
+            return;
+        }
     } else {
         bin.mkpath(QStringLiteral(OPENRCT2_BIN));
-        if (!bin.cd(QStringLiteral(OPENRCT2_BIN))) emit error(QStringLiteral("Unable to create bin folder"));
+        if (!bin.cd(QStringLiteral(OPENRCT2_BIN))) {
+            emit error(tr("Unable to create bin folder"));
+            return;
+        }
     }
 
     if (extract(data, bin)) {
@@ -113,12 +162,8 @@ void Updater::receivedBundle() {
         settings.setValue(QStringLiteral("downloadId"), version);
         settings.setValue(QStringLiteral("gitHash"), githash);
     } else {
-        emit error(QStringLiteral("Unable to extract archive"));
+        emit error(tr("Unable to extract archive"));
     }
-}
-
-void Updater::errorReply(QNetworkReply::NetworkError code) {
-    emit error(QStringLiteral("Network Error ") % QString(code) % QStringLiteral(": ") % reply->errorString());
 }
 
 bool Updater::extract(QByteArray &data, QDir &bin) {

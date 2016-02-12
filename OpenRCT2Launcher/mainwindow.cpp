@@ -49,6 +49,6 @@ void MainWindow::launch() {
     if (QProcess::startDetached(QDir::home().filePath(QStringLiteral(OPENRCT2_EXEC_LOCATION)), QStringList(), QDir::homePath())) {
         QApplication::quit();
     } else {
-        ui->errorLabel->setText(QStringLiteral("Unable to Launch Game"));
+        ui->errorLabel->setText(tr("Unable to Launch Game"));
     }
 }
