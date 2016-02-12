@@ -10,6 +10,7 @@
 
 #include <QBuffer>
 #include <QCryptographicHash>
+#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonDocument>
@@ -24,6 +25,8 @@
 
 Updater::Updater(QObject *parent) : QObject(parent), url(QStringLiteral("https://openrct2.org/altapi/"))
 {
+    connect(&net, &QNetworkAccessManager::sslErrors, [](QNetworkReply * reply, const QList<QSslError> & errors){Q_UNUSED(reply); qDebug() << errors;});
+
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("command"), QStringLiteral("get-latest-download"));
     query.addQueryItem(QStringLiteral("flavourId"), QStringLiteral(OPENRCT2_FLAVOR));
@@ -35,16 +38,16 @@ Updater::Updater(QObject *parent) : QObject(parent), url(QStringLiteral("https:/
 void Updater::download() {
     QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
     QNetworkReply *ureply = net.get(urequest);
-    connect(ureply, &QNetworkReply::finished, this, [this, ureply]() { receivedUpdate(ureply); });
+    connect(ureply, &QNetworkReply::finished, [this, ureply]() { receivedUpdate(ureply); });
 
     QNetworkRequest request(url);
     QNetworkReply *reply = net.get(request);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() { receivedAPI(reply); });
+    connect(reply, &QNetworkReply::finished, [this, reply]() { receivedAPI(reply); });
 }
 
 void Updater::receivedUpdate(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        emit error(QStringLiteral("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
+        emit error(reply->errorString());
         return;
     }
 
@@ -86,7 +89,7 @@ void Updater::receivedUpdate(QNetworkReply *reply) {
 
 void Updater::receivedAPI(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        emit error(tr("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
+        emit error(reply->errorString());
         return;
     }
 
@@ -97,7 +100,7 @@ void Updater::receivedAPI(QNetworkReply *reply) {
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
     if (robj[QStringLiteral("error")].toInt() != 0) {
-        emit error(tr("Server Error:") + robj[QStringLiteral("errorMessage")].toString());
+        emit error(robj[QStringLiteral("errorMessage")].toString());
         return;
     }
 
@@ -114,14 +117,14 @@ void Updater::receivedAPI(QNetworkReply *reply) {
 
         QNetworkRequest request(robj[QStringLiteral("url")].toString());
         QNetworkReply *dreply = net.get(request);
-        connect(dreply, &QNetworkReply::finished, this, [this, dreply]() { this->receivedBundle(dreply); });
+        connect(dreply, &QNetworkReply::finished, [this, dreply]() { this->receivedBundle(dreply); });
         connect(dreply, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
     }
 }
 
 void Updater::receivedBundle(QNetworkReply *reply) {
     if (reply->error() != QNetworkReply::NoError) {
-        emit error(tr("Network Error ") % QString::number(reply->error()) % QStringLiteral(": ") % reply->errorString());
+        emit error(reply->errorString());
         return;
     }
 
@@ -130,13 +133,13 @@ void Updater::receivedBundle(QNetworkReply *reply) {
     reply->deleteLater();
 
     if (data.size() != size) {
-        emit error(tr("Invalid File Downloaded"));
+        emit error(tr("Invalid Download"));
         return;
     }
 
     QByteArray fhash = QCryptographicHash::hash(data, QCryptographicHash::Algorithm::Sha256);
     if (fhash != hash) {
-        emit error(tr("Invalid File Downloaded"));
+        emit error(tr("Invalid Download"));
         return;
     }
 
@@ -144,13 +147,13 @@ void Updater::receivedBundle(QNetworkReply *reply) {
     if (bin.cd(QStringLiteral(OPENRCT2_BIN))) {
         bin.removeRecursively();
         if (!bin.mkpath(QStringLiteral("."))) {
-            emit error(tr("Unable to create bin folder"));
+            emit error(tr("bin dir not created"));
             return;
         }
     } else {
         bin.mkpath(QStringLiteral(OPENRCT2_BIN));
         if (!bin.cd(QStringLiteral(OPENRCT2_BIN))) {
-            emit error(tr("Unable to create bin folder"));
+            emit error(tr("bin dir not created"));
             return;
         }
     }
@@ -162,7 +165,7 @@ void Updater::receivedBundle(QNetworkReply *reply) {
         settings.setValue(QStringLiteral("downloadId"), version);
         settings.setValue(QStringLiteral("gitHash"), githash);
     } else {
-        emit error(tr("Unable to extract archive"));
+        emit error(tr("Error extracting archive"));
     }
 }
 

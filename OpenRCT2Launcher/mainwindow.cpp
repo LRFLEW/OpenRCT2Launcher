@@ -3,6 +3,7 @@
 #include "platform.h"
 #include "configuration.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QProcess>
 
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     connect(&updater, &Updater::installed, [this]{ ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
-    connect(&updater, &Updater::error, [this](QString error){ ui->errorLabel->setText(error); ui->launchButton->setEnabled(true); });
+    connect(&updater, &Updater::error, [this](QString error){ qDebug() << error; ui->errorLabel->setText(error); ui->launchButton->setEnabled(true); });
     connect(&updater, &Updater::downloadProgress, [this](qint64 bytesReceived, qint64 bytesTotal){
         ui->progressBar->setHidden(false); ui->progressBar->setMaximum(bytesTotal); ui->progressBar->setValue(bytesReceived); });
 
