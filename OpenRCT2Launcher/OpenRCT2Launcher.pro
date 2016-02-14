@@ -45,6 +45,7 @@ CONFIG += c++11
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 macx:ICON = Icon/OpenRCT2.icns
+win32:RC_FILE = Icon/OpenRCT2Launcher.rc
 
 # Use Qt5's Zlib if avaiable, otherwise use system's
 exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
