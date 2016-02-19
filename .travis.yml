@@ -11,6 +11,8 @@ matrix:
       install:
         - brew install qt5; brew link --force qt5
     - os: linux
+      sudo: required
+      dist: trusty
       before-install:
         - sudo apt-get update -qq
       install:
