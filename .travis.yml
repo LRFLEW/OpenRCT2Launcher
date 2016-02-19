@@ -1,0 +1,17 @@
+language: c++
+script:
+  - mkdir build; cd build; qmake ../OpenRCT2Launcher/OpenRCT2Launcher.pro; make
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode7.2
+      before-install:
+        - brew update
+      install:
+        - brew install qt5; brew link --force qt5
+    - os: linux
+      before-install:
+        - sudo apt-get update -qq
+      install:
+        - sudo apt-get install qt5-default qtmultimedia5-dev zlib1g-dev
