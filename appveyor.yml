@@ -9,6 +9,6 @@ build_script:
 - cmd: >-
     mkdir build & cd build
 
-    qmake OpenRCT2Launcher\OpenRCT2Launcher.pro
+    qmake ..\OpenRCT2Launcher\OpenRCT2Launcher.pro
 
     nmake
