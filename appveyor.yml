@@ -1,4 +1,4 @@
-version: 0.0.4
+version: 0.0.4#{build}
 os: Visual Studio 2013
 install:
 - cmd: >-
@@ -9,6 +9,6 @@ build_script:
 - cmd: >-
     mkdir build & cd build
 
-    qmake ..\OpenRCT2Launcher\OpenRCT2Launcher.pro
+    qmake OpenRCT2Launcher\OpenRCT2Launcher.pro
 
     nmake
