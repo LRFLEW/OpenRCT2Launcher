@@ -1,6 +1,6 @@
 language: c++
 script:
-  - mkdir build; cd build; qmake $QMAKE_ARGS ../OpenRCT2Launcher/OpenRCT2Launcher.pro; make
+  - qmake $QMAKE_ARGS; make
 
 matrix:
   include:
