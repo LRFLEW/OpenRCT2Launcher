@@ -1,6 +1,6 @@
 language: c++
 script:
-  - mkdir build; cd build; qmake ../OpenRCT2Launcher/OpenRCT2Launcher.pro; make
+  - mkdir build; cd build; qmake $QMAKE_ARGS ../OpenRCT2Launcher/OpenRCT2Launcher.pro; make
 
 matrix:
   include:
@@ -17,3 +17,14 @@ matrix:
         - sudo apt-get update -qq
       install:
         - sudo apt-get install -y qt5-default qt5-qmake qtbase5-dev-tools qtmultimedia5-dev zlib1g-dev
+    - os: linux
+      sudo: required
+      dist: trusty
+      before_install:
+        - sudo dpkg --add-architecture i386
+        - sudo apt-get update -qq
+      install:
+        - sudo apt-get install -y qtchooser qtbase5-dev:i386 qtmultimedia5-dev:i386 qt5-qmake:i386 qtbase5-dev-tools:i386
+        - sudo apt-get install g++-multilib zlib1g-dev:i386
+      env:
+        - QMAKE_ARGS="-qt=qt5-i386-linux-gnu -spec linux-g++-32 INCLUDEPATH += /usr/include/x86_64-linux-gnu/c++/4.8/32/"
