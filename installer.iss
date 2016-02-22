@@ -20,7 +20,7 @@ AppPublisherURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=.
-OutputBaseFilename=OpenRCT2Launcher
+OutputBaseFilename=OpenRCT2Launcher-win
 Compression=lzma
 SolidCompression=yes
 
