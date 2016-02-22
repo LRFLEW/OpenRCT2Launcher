@@ -897,6 +897,21 @@
              <string>Czech koruna (Kc)</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>Hong Kong Dollars (HK$)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>New Taiwan Dollar (NT$)</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chinese Yuan (CN¥)</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>

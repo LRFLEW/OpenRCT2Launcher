@@ -38,6 +38,9 @@ void Configuration::setComboBoxData() {
     ui->currencies->setItemData(10, QStringLiteral("KRW"));
     ui->currencies->setItemData(11, QStringLiteral("RUB"));
     ui->currencies->setItemData(12, QStringLiteral("CZK"));
+    ui->currencies->setItemData(13, QStringLiteral("HKD"));
+    ui->currencies->setItemData(14, QStringLiteral("TWD"));
+    ui->currencies->setItemData(15, QStringLiteral("CNY"));
 
     ui->measurements->setItemData(0, QStringLiteral("IMPERIAL"));
     ui->measurements->setItemData(1, QStringLiteral("METRIC"));
