@@ -4,12 +4,14 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets network multimedia
+QT       += core gui widgets network
+
+!contains(DEFINES, NO_LIST_AUDIO_DEVICES): QT += multimedia
 
 TARGET = OpenRCT2
 TEMPLATE = app
 
-VERSION = 0.0.3
+VERSION = 0.0.4
 
 
 SOURCES  += main.cpp\
@@ -44,8 +46,8 @@ CONFIG += c++11
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
-macx:ICON = Icon/OpenRCT2.icns
-win32:RC_FILE = Icon/OpenRCT2Launcher.rc
+macx: ICON = Icon/OpenRCT2.icns
+win32: RC_FILE = Icon/OpenRCT2Launcher.rc
 
 # Use Qt5's Zlib if avaiable, otherwise use system's
 exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {

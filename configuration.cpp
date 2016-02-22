@@ -3,10 +3,13 @@
 #include "configuration_data.h"
 #include "platform.h"
 
-#include <QAudioDeviceInfo>
 #include <QDir>
 #include <QFileDialog>
 #include <QScreen>
+
+#ifndef NO_LIST_AUDIO_DEVICES
+#include <QAudioDeviceInfo>
+#endif
 
 Configuration::Configuration(QString file, QWidget *parent) :
     QDialog(parent),
@@ -69,10 +72,20 @@ Configuration::Configuration(QString file, QWidget *parent) :
     }
 
     {
+#ifdef NO_LIST_AUDIO_DEVICES
+        QVariant cvalue = config.value(QStringLiteral("sound/audio_device"));
+        if (cvalue.isValid()) {
+            QString value = cvalue.toString();
+            if (!value.isEmpty()) {
+                ui->soundDevices->addItem(value, value);
+            }
+        }
+#else
         QList<QAudioDeviceInfo> outputDevices = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
         for (QAudioDeviceInfo &info : outputDevices) {
             ui->soundDevices->addItem(info.deviceName(), info.deviceName());
         }
+#endif
     }
 
     {
