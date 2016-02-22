@@ -53,9 +53,9 @@ matrix:
         - sudo apt-get update -qq
       install:
         - sudo apt-get install -y qtchooser qtbase5-dev:i386 qtmultimedia5-dev:i386 qt5-qmake:i386 qtbase5-dev-tools:i386
-        - sudo apt-get install -y g++-multilib zlib1g-dev:i386
+        - sudo apt-get install -y g++-multilib zlib1g-dev:i386 libstdc++-4.8-dev:i386
       before_deploy:
         - tar -czf OpenRCT2Launcher-Linux-x86.tar.gz OpenRCT2
       env:
-        - QMAKE_ARGS="-qt=qt5-i386-linux-gnu -spec linux-g++-32 INCLUDEPATH+=/usr/include/x86_64-linux-gnu/c++/4.8/32/"
+        - QMAKE_ARGS="-qt=qt5-i386-linux-gnu -spec linux-g++-32"
         - DEPLOY_FILE=OpenRCT2Launcher-Linux-x86.tar.gz
