@@ -1,5 +1,5 @@
 version: 0.0.4#{build}
-os: Visual Studio 2013
+image: Visual Studio 2013
 install:
 - cmd: >-
     SET PATH=%PATH%;C:\Qt\5.5\msvc2013\bin
@@ -16,6 +16,10 @@ build_script:
     copy release\OpenRCT2.exe build-Windows\OpenRCT2.exe
 
     windeployqt build-Windows\OpenRCT2.exe
+
+    copy C:\OpenSSL-Win32\libeay32.dll build-Windows\libeay32.dll
+
+    copy C:\OpenSSL-Win32\ssleay32.dll build-Windows\ssleay32.dll
 
     pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win.zip * & popd
 
