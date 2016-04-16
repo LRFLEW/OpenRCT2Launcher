@@ -108,7 +108,7 @@ void Updater::receivedAPI(QNetworkReply *reply) {
     QString have = settings.value(QStringLiteral("downloadId")).toString();
     version = robj[QStringLiteral("downloadId")].toString();
 
-    if (have == version && QDir::home().cd(QStringLiteral(OPENRCT2_BIN))) {
+    if (have == version && OPENRCT2_HOMEDIR.cd(QStringLiteral(OPENRCT2_BIN))) {
         emit installed();
     } else {
         size = robj[QStringLiteral("fileSize")].toInt();
@@ -143,7 +143,7 @@ void Updater::receivedBundle(QNetworkReply *reply) {
         return;
     }
 
-    QDir bin = QDir::home();
+    QDir bin = OPENRCT2_HOMEDIR;
     if (bin.cd(QStringLiteral(OPENRCT2_BIN))) {
         bin.removeRecursively();
         if (!bin.mkpath(QStringLiteral("."))) {

@@ -34,7 +34,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_optionsButton_clicked() {
-    QDir dir = QDir::home();
+    QDir dir = OPENRCT2_HOMEDIR;
     if (dir.cd(QStringLiteral(OPENRCT2_BASE))) {
         if (!dir.exists()) dir.mkpath(QStringLiteral(OPENRCT2_BASE));
     } else {
@@ -47,7 +47,7 @@ void MainWindow::on_optionsButton_clicked() {
 }
 
 void MainWindow::launch() {
-    if (QProcess::startDetached(QDir::home().filePath(QStringLiteral(OPENRCT2_EXEC_LOCATION)), QStringList(), QDir::homePath())) {
+    if (QProcess::startDetached(OPENRCT2_HOMEDIR.filePath(QStringLiteral(OPENRCT2_EXEC_LOCATION)), QStringList(), OPENRCT2_HOMEPATH)) {
         QApplication::quit();
     } else {
         ui->errorLabel->setText(tr("Unable to Launch Game"));

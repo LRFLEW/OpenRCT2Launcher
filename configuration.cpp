@@ -89,7 +89,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
     }
 
     {
-        QDir themesDir = QDir::home();
+        QDir themesDir = OPENRCT2_HOMEDIR;
         if (themesDir.cd(QStringLiteral(OPENRCT2_THEMES_LOCATION))) {
             // remove ini when json is merged
             QFileInfoList themes = themesDir.entryInfoList({QStringLiteral("*.ini"), QStringLiteral("*.json")},
@@ -101,7 +101,7 @@ Configuration::Configuration(QString file, QWidget *parent) :
     }
 
     {
-        QDir themesDir = QDir::home();
+        QDir themesDir = OPENRCT2_HOMEDIR;
         if (themesDir.cd(OPENRCT2_TITLE_LOCATION)) {
             QFileInfoList themes = themesDir.entryInfoList(
                     QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
@@ -252,6 +252,6 @@ Configuration::~Configuration()
 
 void Configuration::on_locateRCT2_clicked() {
     QString rct2 =  QFileDialog::getExistingDirectory(this, tr("Select RCT2 Install Location"),
-                                                      QDir::homePath(), QFileDialog::ShowDirsOnly);
+                                                      OPENRCT2_HOMEPATH, QFileDialog::ShowDirsOnly);
     if (!rct2.isEmpty()) ui->rct2Path->setText(rct2);
 }
