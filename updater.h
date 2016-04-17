@@ -5,6 +5,7 @@
 #include <QByteArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QSettings>
 #include <QUrl>
 
 class Updater : public QObject
@@ -12,6 +13,7 @@ class Updater : public QObject
     Q_OBJECT
 public:
     explicit Updater(QObject *parent = 0);
+    QSettings settings;
 
 signals:
     void installed();
@@ -21,10 +23,10 @@ signals:
 public slots:
     void download();
 
-private:
-    void receivedUpdate(QNetworkReply *reply);
-    void receivedAPI(QNetworkReply *reply);
-    void receivedBundle(QNetworkReply *reply);
+private slots:
+    void receivedUpdate();
+    void receivedAPI();
+    void receivedBundle();
 
 private:
     bool extract(QByteArray &data, QDir &bin);
@@ -35,6 +37,10 @@ private:
     QByteArray hash;
     QByteArray githash;
     QString version;
+
+    QNetworkReply *update = nullptr;
+    QNetworkReply *api = nullptr;
+    QNetworkReply *bundle = nullptr;
 };
 
 #endif // UPDATER_H

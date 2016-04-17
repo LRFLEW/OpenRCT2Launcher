@@ -42,7 +42,8 @@ void MainWindow::on_optionsButton_clicked() {
         dir.cd(QStringLiteral(OPENRCT2_BASE));
     }
 
-    Configuration config(dir.filePath(QStringLiteral("config.ini")));
+    Configuration config(&updater.settings, dir.filePath(QStringLiteral("config.ini")));
+    connect(&config, &Configuration::redownload, [this]{ ui->launchButton->setEnabled(false); updater.download(); });
     config.exec();
 }
 

@@ -14,8 +14,11 @@ class Configuration : public QDialog
     Q_OBJECT
 
 public:
-    explicit Configuration(QString file, QWidget *parent = 0);
+    explicit Configuration(QSettings *mainSettings, QString file, QWidget *parent = 0);
     ~Configuration();
+
+signals:
+    void redownload();
 
 public slots:
     void on_locateRCT2_clicked();
@@ -24,6 +27,7 @@ private:
     Ui::Configuration *ui;
     void setComboBoxData();
     QSettings config;
+    QSettings *mainSettings;
     QMap<QString, QString> langEquiv;
 };
 

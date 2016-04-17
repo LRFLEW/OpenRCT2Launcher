@@ -18,7 +18,6 @@
 #include <QMessageBox>
 #include <QNetworkRequest>
 #include <QProcess>
-#include <QSettings>
 #include <QStringBuilder>
 #include <QTemporaryFile>
 #include <QUrlQuery>
@@ -26,34 +25,42 @@
 Updater::Updater(QObject *parent) : QObject(parent), url(QStringLiteral("https://openrct2.org/altapi/"))
 {
     connect(&net, &QNetworkAccessManager::sslErrors, [](QNetworkReply * reply, const QList<QSslError> & errors){Q_UNUSED(reply); qDebug() << errors;});
+}
+
+void Updater::download() {
+    if (update != nullptr) update->abort(), update = nullptr;
+    if (api != nullptr) api->abort(), api = nullptr;
+    if (bundle != nullptr) bundle->abort(), bundle = nullptr;
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("command"), QStringLiteral("get-latest-download"));
     query.addQueryItem(QStringLiteral("flavourId"), QStringLiteral(OPENRCT2_FLAVOR));
-    query.addQueryItem(QStringLiteral("gitBranch"), QStringLiteral("develop"));
+
+    QVariant stableVar = settings.value(QStringLiteral("stable"));
+    bool stable = stableVar.isValid() && stableVar.toBool();
+    query.addQueryItem(QStringLiteral("gitBranch"), stable ? QStringLiteral("master") : QStringLiteral("develop"));
 
     url.setQuery(query.query());
-}
 
-void Updater::download() {
     QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
-    QNetworkReply *ureply = net.get(urequest);
-    connect(ureply, &QNetworkReply::finished, [this, ureply]() { receivedUpdate(ureply); });
+    update = net.get(urequest);
+    connect(update, &QNetworkReply::finished, this, &Updater::receivedUpdate);
 
     QNetworkRequest request(url);
-    QNetworkReply *reply = net.get(request);
-    connect(reply, &QNetworkReply::finished, [this, reply]() { receivedAPI(reply); });
+    api = net.get(request);
+    connect(api, &QNetworkReply::finished, this, &Updater::receivedAPI);
 }
 
-void Updater::receivedUpdate(QNetworkReply *reply) {
-    if (reply->error() != QNetworkReply::NoError) {
-        emit error(reply->errorString());
+void Updater::receivedUpdate() {
+    if (update->error() != QNetworkReply::NoError) {
+        emit error(update->errorString());
         return;
     }
 
-    QByteArray data = reply->readAll();
-    reply->close();
-    reply->deleteLater();
+    QByteArray data = update->readAll();
+    update->close();
+    update->deleteLater();
+    update = nullptr;
 
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
@@ -87,15 +94,16 @@ void Updater::receivedUpdate(QNetworkReply *reply) {
     }
 }
 
-void Updater::receivedAPI(QNetworkReply *reply) {
-    if (reply->error() != QNetworkReply::NoError) {
-        emit error(reply->errorString());
+void Updater::receivedAPI() {
+    if (api->error() != QNetworkReply::NoError) {
+        emit error(api->errorString());
         return;
     }
 
-    QByteArray data = reply->readAll();
-    reply->close();
-    reply->deleteLater();
+    QByteArray data = api->readAll();
+    api->close();
+    api->deleteLater();
+    api = nullptr;
 
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
@@ -104,7 +112,6 @@ void Updater::receivedAPI(QNetworkReply *reply) {
         return;
     }
 
-    QSettings settings;
     QString have = settings.value(QStringLiteral("downloadId")).toString();
     version = robj[QStringLiteral("downloadId")].toString();
 
@@ -116,21 +123,22 @@ void Updater::receivedAPI(QNetworkReply *reply) {
         githash = QByteArray::fromHex(robj[QStringLiteral("gitHash")].toString().toLatin1());
 
         QNetworkRequest request(robj[QStringLiteral("url")].toString());
-        QNetworkReply *dreply = net.get(request);
-        connect(dreply, &QNetworkReply::finished, [this, dreply]() { this->receivedBundle(dreply); });
-        connect(dreply, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
+        bundle = net.get(request);
+        connect(bundle, &QNetworkReply::finished, this, &Updater::receivedBundle);
+        connect(bundle, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
     }
 }
 
-void Updater::receivedBundle(QNetworkReply *reply) {
-    if (reply->error() != QNetworkReply::NoError) {
-        emit error(reply->errorString());
+void Updater::receivedBundle() {
+    if (bundle->error() != QNetworkReply::NoError) {
+        emit error(bundle->errorString());
         return;
     }
 
-    QByteArray data = reply->readAll();
-    reply->close();
-    reply->deleteLater();
+    QByteArray data = bundle->readAll();
+    bundle->close();
+    bundle->deleteLater();
+    bundle = nullptr;
 
     if (data.size() != size) {
         emit error(tr("Invalid Download"));
@@ -161,9 +169,9 @@ void Updater::receivedBundle(QNetworkReply *reply) {
     if (extract(data, bin)) {
         emit installed();
 
-        QSettings settings;
         settings.setValue(QStringLiteral("downloadId"), version);
         settings.setValue(QStringLiteral("gitHash"), githash);
+        settings.sync();
     } else {
         emit error(tr("Error extracting archive"));
     }

@@ -102,13 +102,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_2">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="toolTip">
-            <string>Stable is not currently avaiable through the launcher</string>
-           </property>
+          <widget class="QRadioButton" name="stableButton">
            <property name="text">
             <string>Stable</string>
            </property>
@@ -118,7 +112,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton">
+          <widget class="QRadioButton" name="developButton">
            <property name="text">
             <string>Develop</string>
            </property>

@@ -11,25 +11,25 @@
 #include <QAudioDeviceInfo>
 #endif
 
-Configuration::Configuration(QString file, QWidget *parent) :
+Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Configuration),
-    config(file, QSettings::IniFormat)
+    config(file, QSettings::IniFormat),
+    mainSettings(mainSettings)
 {
     ui->setupUi(this);
     setComboBoxData();
 
-    {
-        QSettings main;
+    ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION));
 
-        ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION));
+    QVariant build = mainSettings->value(QStringLiteral("downloadId"));
+    if (build.isValid()) ui->buildVersionMsg->setText(tr("OpenRCT2 Build: ") + build.toString());
 
-        QVariant build = main.value(QStringLiteral("downloadId"));
-        if (build.isValid()) ui->buildVersionMsg->setText(tr("OpenRCT2 Build: ") + build.toString());
+    QVariant hash = mainSettings->value(QStringLiteral("gitHash"));
+    if (hash.isValid()) ui->buildHashMsg->setText(tr("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
 
-        QVariant hash = main.value(QStringLiteral("gitHash"));
-        if (build.isValid()) ui->buildHashMsg->setText(tr("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
-    }
+    QVariant stable = mainSettings->value(QStringLiteral("stable"));
+    if (stable.isValid() && stable.toBool()) ui->stableButton->setChecked(true);
 
     for (QLineEdit *w : ui->tabWidget->findChildren<QLineEdit *>()) {
         QVariant setting = w->property("config");
@@ -245,6 +245,15 @@ Configuration::~Configuration()
                 else config.setValue(setting.toString(), w->currentIndex());
             }
         }
+    }
+
+    QVariant stableVar = mainSettings->value(QStringLiteral("stable"));
+    bool stable = stableVar.isValid() && stableVar.toBool();
+    bool newStable = ui->stableButton->isChecked();
+    if (stable != newStable) {
+        mainSettings->setValue(QStringLiteral("stable"), newStable);
+        mainSettings->sync();
+        emit redownload();
     }
 
     delete ui;
