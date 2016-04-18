@@ -11,7 +11,7 @@ QT       += core gui widgets network
 TARGET = OpenRCT2
 TEMPLATE = app
 
-VERSION = 0.0.4
+VERSION = 0.0.5
 
 
 SOURCES  += main.cpp\
