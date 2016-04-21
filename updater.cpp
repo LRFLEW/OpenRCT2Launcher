@@ -53,7 +53,7 @@ void Updater::download() {
 
 void Updater::receivedUpdate() {
     if (update->error() != QNetworkReply::NoError) {
-        emit error(update->errorString());
+        //emit error(update->errorString());
         return;
     }
 
