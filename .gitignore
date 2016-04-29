@@ -14,6 +14,11 @@
 *.dll
 *.dylib
 
+# But include compiled_libs
+!compiled_libs/*.so
+!compiled_libs/*.dll
+!compiled_libs/*.dylib
+
 # Qt-es
 
 /.qmake.cache
