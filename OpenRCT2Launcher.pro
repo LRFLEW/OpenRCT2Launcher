@@ -6,8 +6,6 @@
 
 QT       += core gui widgets network
 
-!contains(DEFINES, NO_LIST_AUDIO_DEVICES): QT += multimedia
-
 TARGET = OpenRCT2
 TEMPLATE = app
 

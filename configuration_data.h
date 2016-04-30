@@ -25,48 +25,8 @@ void Configuration::setComboBoxData() {
     ui->languages->setItemData(16, QStringLiteral("ca-CA"));
     ui->languages->setItemData(17, QStringLiteral("jp-JP"));
 
-    ui->currencies->setItemData(0, QStringLiteral("GBP"));
-    ui->currencies->setItemData(1, QStringLiteral("USD"));
-    ui->currencies->setItemData(2, QStringLiteral("FRF"));
-    ui->currencies->setItemData(3, QStringLiteral("DEM"));
-    ui->currencies->setItemData(4, QStringLiteral("JPY"));
-    ui->currencies->setItemData(5, QStringLiteral("ESP"));
-    ui->currencies->setItemData(6, QStringLiteral("ITL"));
-    ui->currencies->setItemData(7, QStringLiteral("NLG"));
-    ui->currencies->setItemData(8, QStringLiteral("SEK"));
-    ui->currencies->setItemData(9, QStringLiteral("EUR"));
-    ui->currencies->setItemData(10, QStringLiteral("KRW"));
-    ui->currencies->setItemData(11, QStringLiteral("RUB"));
-    ui->currencies->setItemData(12, QStringLiteral("CZK"));
-    ui->currencies->setItemData(13, QStringLiteral("HKD"));
-    ui->currencies->setItemData(14, QStringLiteral("TWD"));
-    ui->currencies->setItemData(15, QStringLiteral("CNY"));
-
-    ui->measurements->setItemData(0, QStringLiteral("IMPERIAL"));
-    ui->measurements->setItemData(1, QStringLiteral("METRIC"));
-    ui->measurements->setItemData(2, QStringLiteral("SI"));
-
-    ui->temperatures->setItemData(0, QStringLiteral("CELSIUS"));
-    ui->temperatures->setItemData(1, QStringLiteral("FAHRENHEIT"));
-
-    ui->dates->setItemData(0, QStringLiteral("DD/MM/YY"));
-    ui->dates->setItemData(1, QStringLiteral("MM/DD/YY"));
-    ui->dates->setItemData(2, QStringLiteral("YY/MM/DD"));
-    ui->dates->setItemData(3, QStringLiteral("YY/DD/MM"));
-
     ui->screenshotFormat->setItemData(0, QStringLiteral("BMP"));
     ui->screenshotFormat->setItemData(1, QStringLiteral("PNG"));
-
-    ui->themes->setItemData(0, QStringLiteral("*RCT1"));
-    ui->themes->setItemData(1, QStringLiteral("*RCT2"));
-
-    ui->titleSequence->setItemData(0, QStringLiteral("*RCT1"));
-    ui->titleSequence->setItemData(1, QStringLiteral("*RCT1AA"));
-    ui->titleSequence->setItemData(2, QStringLiteral("*RCT1AALL"));
-    ui->titleSequence->setItemData(3, QStringLiteral("*RCT2"));
-    ui->titleSequence->setItemData(4, QStringLiteral("*OPENRCT2"));
-
-    ui->soundDevices->setItemData(0, QStringLiteral(""));
 
     langEquiv.insert("en-CA", "en-US");
     langEquiv.insert("zh-CN", "zh-Hant");

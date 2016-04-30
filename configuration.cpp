@@ -3,13 +3,7 @@
 #include "configuration_data.h"
 #include "platform.h"
 
-#include <QDir>
 #include <QFileDialog>
-#include <QScreen>
-
-#ifndef NO_LIST_AUDIO_DEVICES
-#include <QAudioDeviceInfo>
-#endif
 
 Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *parent) :
     QDialog(parent),
@@ -55,63 +49,6 @@ Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *par
         }
     }
 
-    for (QDoubleSpinBox *w : ui->tabWidget->findChildren<QDoubleSpinBox *>()) {
-        QVariant setting = w->property("config");
-        if (setting.isValid()) {
-            QVariant cvalue = config.value(setting.toString());
-            if (cvalue.convert(QMetaType::Double)) w->setValue(cvalue.toDouble());
-        }
-    }
-
-    for (QSlider *w : ui->tabWidget->findChildren<QSlider *>()) {
-        QVariant setting = w->property("config");
-        if (setting.isValid()) {
-            QVariant cvalue = config.value(setting.toString());
-            if (cvalue.convert(QMetaType::Int)) w->setValue(cvalue.toInt());
-        }
-    }
-
-    {
-#ifdef NO_LIST_AUDIO_DEVICES
-        QVariant cvalue = config.value(QStringLiteral("sound/audio_device"));
-        if (cvalue.isValid()) {
-            QString value = cvalue.toString();
-            if (!value.isEmpty()) {
-                ui->soundDevices->addItem(value, value);
-            }
-        }
-#else
-        QList<QAudioDeviceInfo> outputDevices = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
-        for (QAudioDeviceInfo &info : outputDevices) {
-            ui->soundDevices->addItem(info.deviceName(), info.deviceName());
-        }
-#endif
-    }
-
-    {
-        QDir themesDir = OPENRCT2_HOMEDIR;
-        if (themesDir.cd(QStringLiteral(OPENRCT2_THEMES_LOCATION))) {
-            // remove ini when json is merged
-            QFileInfoList themes = themesDir.entryInfoList({QStringLiteral("*.ini"), QStringLiteral("*.json")},
-                    QDir::Files | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
-            for (QFileInfo &info : themes) {
-                ui->themes->addItem(info.baseName(), QVariant(info.baseName()));
-            }
-        }
-    }
-
-    {
-        QDir themesDir = OPENRCT2_HOMEDIR;
-        if (themesDir.cd(OPENRCT2_TITLE_LOCATION)) {
-            QFileInfoList themes = themesDir.entryInfoList(
-                    QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable, QDir::Name);
-            for (QFileInfo &info : themes) {
-                if (QFile::exists(QDir(info.filePath()).filePath(QStringLiteral("script.txt"))))
-                    ui->titleSequence->addItem(info.baseName(), QVariant(info.baseName()));
-            }
-        }
-    }
-
     for (QComboBox *w : ui->tabWidget->findChildren<QComboBox *>()) {
         QVariant setting = w->property("config");
         if (setting.isValid()) {
@@ -130,12 +67,6 @@ Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *par
                 if (index >= 0) w->setCurrentIndex(index);
             }
         }
-    }
-
-    if (ui->fullscreenWidth->value() == 0 && ui->fullscreenHeight->value() == 0) {
-        QSize display = QApplication::primaryScreen()->size();
-        ui->fullscreenWidth->setValue(display.width());
-        ui->fullscreenHeight->setValue(display.height());
     }
 
     // Locale Stuff
@@ -167,33 +98,6 @@ Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *par
 
             ui->languages->setCurrentIndex(ind);
         }
-        if (!config.value(QStringLiteral("currency_format")).isValid()) {
-            int ind = ui->currencies->findData(locale.currencySymbol(QLocale::CurrencyIsoCode));
-            if (ind >= 0) ui->currencies->setCurrentIndex(ind);
-        }
-        if (!config.value(QStringLiteral("measurement_format")).isValid()) {
-            ui->measurements->setCurrentIndex((locale.measurementSystem() == QLocale::MetricSystem) ? 1 : 0);
-        }
-        if (!config.value(QStringLiteral("temperature_format")).isValid()) {
-            ui->temperatures->setCurrentIndex((locale.measurementSystem() == QLocale::ImperialUSSystem) ? 1 : 0);
-        }
-        if (!config.value(QStringLiteral("date_format")).isValid()) {
-            QString df = locale.dateFormat();
-            // dateFormat is not quite what we need, so I'll translate it
-            int day = df.indexOf('d', 0, Qt::CaseInsensitive);
-            int month = df.indexOf('M', 0, Qt::CaseInsensitive);
-            int year = df.indexOf('y', 0, Qt::CaseInsensitive);
-            // Assume that if year is not first, it's last
-            if (day >= 0 && month >= 0 && year >= 0) {
-                if (month < day) {
-                    if (year < month) ui->dates->setCurrentIndex(2);
-                    else ui->dates->setCurrentIndex(1);
-                } else {
-                    if (year < day) ui->dates->setCurrentIndex(3);
-                    else ui->dates->setCurrentIndex(0);
-                }
-            }
-        }
     }
 }
 
@@ -214,20 +118,6 @@ Configuration::~Configuration()
     }
 
     for (QSpinBox *w : ui->tabWidget->findChildren<QSpinBox *>()) {
-        QVariant setting = w->property("config");
-        if (setting.isValid()) {
-            config.setValue(setting.toString(), w->value());
-        }
-    }
-
-    for (QDoubleSpinBox *w : ui->tabWidget->findChildren<QDoubleSpinBox *>()) {
-        QVariant setting = w->property("config");
-        if (setting.isValid()) {
-            config.setValue(setting.toString(), w->value());
-        }
-    }
-
-    for (QSlider *w : ui->tabWidget->findChildren<QSlider *>()) {
         QVariant setting = w->property("config");
         if (setting.isValid()) {
             config.setValue(setting.toString(), w->value());
