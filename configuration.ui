@@ -54,7 +54,7 @@
          <item>
           <widget class="QLineEdit" name="rct2Path">
            <property name="config" stdset="0">
-            <string>game_path</string>
+            <string notr="true">game_path</string>
            </property>
           </widget>
          </item>
@@ -143,7 +143,7 @@
        <item>
         <widget class="QLabel" name="launcherVersionMsg">
          <property name="text">
-          <string>Launcher Version: X.X.X</string>
+          <string notr="true">Launcher Version: X.X.X</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -214,11 +214,11 @@
             <number>1</number>
            </property>
            <property name="config" stdset="0">
-            <string>language</string>
+            <string notr="true">language</string>
            </property>
            <item>
             <property name="text">
-             <string>English (UK)</string>
+             <string notr="true">English (UK)</string>
             </property>
            </item>
            <item>
@@ -228,82 +228,82 @@
            </item>
            <item>
             <property name="text">
-             <string>Deutsch</string>
+             <string notr="true">Deutsch</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Nederlands</string>
+             <string notr="true">Nederlands</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Français</string>
+             <string notr="true">Français</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Magyar</string>
+             <string notr="true">Magyar</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Polski</string>
+             <string notr="true">Polski</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Español</string>
+             <string notr="true">Español</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Svenska</string>
+             <string notr="true">Svenska</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Italiano</string>
+             <string notr="true">Italiano</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Português (BR)</string>
+             <string notr="true">Português (BR)</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Chinese (Traditional)</string>
+             <string notr="true">Chinese (Traditional)</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Chinese (Simplified)</string>
+             <string notr="true">Chinese (Simplified)</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Suomi</string>
+             <string notr="true">Suomi</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Korean</string>
+             <string notr="true">Korean</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Russian</string>
+             <string notr="true">Russian</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Czech</string>
+             <string notr="true">Czech</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Japanese</string>
+             <string notr="true">Japanese</string>
             </property>
            </item>
           </widget>
@@ -348,7 +348,7 @@
             <number>720</number>
            </property>
            <property name="config" stdset="0">
-            <string>window_width</string>
+            <string notr="true">window_width</string>
            </property>
           </widget>
          </item>
@@ -368,7 +368,7 @@
             <number>480</number>
            </property>
            <property name="config" stdset="0">
-            <string>window_height</string>
+            <string notr="true">window_height</string>
            </property>
           </widget>
          </item>
@@ -380,7 +380,7 @@
           <string>Use small font in debug console</string>
          </property>
          <property name="config" stdset="0">
-          <string>interface/console_small_font</string>
+          <string notr="true">interface/console_small_font</string>
          </property>
         </widget>
        </item>
@@ -414,7 +414,7 @@
             <number>5</number>
            </property>
            <property name="config" stdset="0">
-            <string>window_snap_proximity</string>
+            <string notr="true">window_snap_proximity</string>
            </property>
           </widget>
          </item>
@@ -426,7 +426,7 @@
           <string>Don't let testing rides crash</string>
          </property>
          <property name="config" stdset="0">
-          <string>no_test_crashes</string>
+          <string notr="true">no_test_crashes</string>
          </property>
         </widget>
        </item>
@@ -436,7 +436,7 @@
           <string>Allow loading files with incorrect checksums</string>
          </property>
          <property name="config" stdset="0">
-          <string>allow_loading_with_incorrect_checksum</string>
+          <string notr="true">allow_loading_with_incorrect_checksum</string>
          </property>
         </widget>
        </item>
@@ -455,7 +455,7 @@
             <number>1</number>
            </property>
            <property name="config" stdset="0">
-            <string>screenshot_format</string>
+            <string notr="true">screenshot_format</string>
            </property>
            <item>
             <property name="text">
@@ -477,7 +477,7 @@
           <string>Always prompt for save location</string>
          </property>
          <property name="config" stdset="0">
-          <string>confirmation_prompt</string>
+          <string notr="true">confirmation_prompt</string>
          </property>
         </widget>
        </item>
@@ -487,7 +487,7 @@
           <string>Show game intro</string>
          </property>
          <property name="config" stdset="0">
-          <string>play_intro</string>
+          <string notr="true">play_intro</string>
          </property>
         </widget>
        </item>
@@ -500,7 +500,7 @@
           <bool>true</bool>
          </property>
          <property name="config" stdset="0">
-          <string>scenario_hide_mega_park</string>
+          <string notr="true">scenario_hide_mega_park</string>
          </property>
         </widget>
        </item>
@@ -519,57 +519,25 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="networkTab">
+     <widget class="QWidget" name="multiplayerTab">
       <attribute name="title">
-       <string>Network</string>
+       <string>Multiplayer</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_17">
        <item>
         <layout class="QGridLayout" name="gridLayout_5">
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_30">
-           <property name="text">
-            <string>Max number of player on server:</string>
+         <item row="0" column="0">
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_31">
-           <property name="text">
-            <string>Server Name</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLineEdit" name="lineEdit_4">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>160</width>
-             <height>0</height>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="echoMode">
-            <enum>QLineEdit::Password</enum>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/default_password</string>
-           </property>
-          </widget>
+          </spacer>
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="label_27">
@@ -599,7 +567,52 @@
             <string>Player</string>
            </property>
            <property name="config" stdset="0">
-            <string>network/player_name</string>
+            <string notr="true">network/player_name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>Server Name</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="lineEdit_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Server</string>
+           </property>
+           <property name="config" stdset="0">
+            <string notr="true">network/server_name</string>
            </property>
           </widget>
          </item>
@@ -607,6 +620,76 @@
           <widget class="QLabel" name="label_29">
            <property name="text">
             <string>Server Password:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="lineEdit_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="config" stdset="0">
+            <string notr="true">network/default_password</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>Server Port:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QSpinBox" name="spinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>65535</number>
+           </property>
+           <property name="value">
+            <number>11753</number>
+           </property>
+           <property name="config" stdset="0">
+            <string notr="true">network/default_port</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Max number of player on server:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -637,92 +720,9 @@
             <number>16</number>
            </property>
            <property name="config" stdset="0">
-            <string>network/maxplayers</string>
+            <string notr="true">network/maxplayers</string>
            </property>
           </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_28">
-           <property name="text">
-            <string>Server Port:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="lineEdit_5">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>160</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Server</string>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/server_name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="2">
-          <widget class="QSpinBox" name="spinBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>160</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximum">
-            <number>65535</number>
-           </property>
-           <property name="value">
-            <number>11753</number>
-           </property>
-           <property name="config" stdset="0">
-            <string>network/default_port</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -732,7 +732,7 @@
           <string>Advertise server on global server list</string>
          </property>
          <property name="config" stdset="0">
-          <string>network/advertise</string>
+          <string notr="true">network/advertise</string>
          </property>
         </widget>
        </item>
@@ -745,20 +745,6 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_6">
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_9">
-           <property name="config" stdset="0">
-            <string>network/provider_website</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_7">
-           <property name="config" stdset="0">
-            <string>network/provider_name</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_32">
            <property name="text">
@@ -766,10 +752,24 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_35">
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_6">
+           <property name="config" stdset="0">
+            <string notr="true">network/server_description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_33">
            <property name="text">
-            <string>Provider Website:</string>
+            <string>Provider Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_7">
+           <property name="config" stdset="0">
+            <string notr="true">network/provider_name</string>
            </property>
           </widget>
          </item>
@@ -780,24 +780,24 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_6">
-           <property name="config" stdset="0">
-            <string>network/server_description</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="lineEdit_8">
            <property name="config" stdset="0">
-            <string>network/provider_email</string>
+            <string notr="true">network/provider_email</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_33">
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_35">
            <property name="text">
-            <string>Provider Name:</string>
+            <string>Provider Website:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_9">
+           <property name="config" stdset="0">
+            <string notr="true">network/provider_website</string>
            </property>
           </widget>
          </item>
@@ -811,7 +811,7 @@
          <item row="4" column="1">
           <widget class="QLineEdit" name="lineEdit_10">
            <property name="config" stdset="0">
-            <string>network/master_server_url</string>
+            <string notr="true">network/master_server_url</string>
            </property>
           </widget>
          </item>
@@ -846,6 +846,35 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>rct2Path</tabstop>
+  <tabstop>locateRCT2</tabstop>
+  <tabstop>stableButton</tabstop>
+  <tabstop>developButton</tabstop>
+  <tabstop>languages</tabstop>
+  <tabstop>spinBox_5</tabstop>
+  <tabstop>spinBox_7</tabstop>
+  <tabstop>checkBox_44</tabstop>
+  <tabstop>spinBox_6</tabstop>
+  <tabstop>checkBox_41</tabstop>
+  <tabstop>checkBox_30</tabstop>
+  <tabstop>screenshotFormat</tabstop>
+  <tabstop>checkBox_24</tabstop>
+  <tabstop>checkBox_38</tabstop>
+  <tabstop>checkBox_42</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>lineEdit_5</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>spinBox_2</tabstop>
+  <tabstop>checkBox_40</tabstop>
+  <tabstop>lineEdit_6</tabstop>
+  <tabstop>lineEdit_7</tabstop>
+  <tabstop>lineEdit_8</tabstop>
+  <tabstop>lineEdit_9</tabstop>
+  <tabstop>lineEdit_10</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
