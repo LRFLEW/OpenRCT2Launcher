@@ -20,10 +20,10 @@ bool extractTar(QIODevice *in, QDir extractLoc) {
 
         // Terrible, terrible checksum
         // Will fail under odd edge-cases (fingers crossed it won't happen)
-        quint16 checksum = headbuf.mid(148, 8).toUShort(&good, 8);
+        quint32 checksum = headbuf.mid(148, 8).toUInt(&good, 8);
         if (!good) return false;
         headbuf.replace(148, 8, "        ", 8);
-        quint16 sum = 0;
+        quint32 sum = 0;
         for (quint8 c : headbuf) sum += c;
         if (sum != checksum) return false;
 

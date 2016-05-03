@@ -223,7 +223,7 @@
            </item>
            <item>
             <property name="text">
-             <string>English (US)</string>
+             <string notr="true">English (US)</string>
             </property>
            </item>
            <item>
@@ -459,12 +459,12 @@
            </property>
            <item>
             <property name="text">
-             <string>BMP</string>
+             <string notr="true">BMP</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>PNG</string>
+             <string notr="true">PNG</string>
             </property>
            </item>
           </widget>
