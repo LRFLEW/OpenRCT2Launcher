@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Languages/cs-CZ.qm</file>
+        <file>Languages/de-DE.qm</file>
+        <file>Languages/en-GB.qm</file>
+        <file>Languages/en-US.qm</file>
+        <file>Languages/es-ES.qm</file>
+        <file>Languages/fi-FI.qm</file>
+        <file>Languages/fr-FR.qm</file>
+        <file>Languages/hu-HU.qm</file>
+        <file>Languages/it-IT.qm</file>
+        <file>Languages/ja-JP.qm</file>
+        <file>Languages/ko-KR.qm</file>
+        <file>Languages/nl-NL.qm</file>
+        <file>Languages/pl-PL.qm</file>
+        <file>Languages/pt-BR.qm</file>
+        <file>Languages/ru-RU.qm</file>
+        <file>Languages/sv-SE.qm</file>
+        <file>Languages/zh-CN.qm</file>
+        <file>Languages/zh-TW.qm</file>
+    </qresource>
+</RCC>

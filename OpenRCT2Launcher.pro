@@ -26,7 +26,27 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     configuration.ui
 
-RESOURCES += resources.qrc
+RESOURCES += resources.qrc \
+    languages.qrc
+
+TRANSLATIONS = Languages/en-GB.ts \
+    Languages/en-US.ts \
+    Languages/de-DE.ts \
+    Languages/nl-NL.ts \
+    Languages/fr-FR.ts \
+    Languages/hu-HU.ts \
+    Languages/pl-PL.ts \
+    Languages/es-ES.ts \
+    Languages/sv-SE.ts \
+    Languages/it-IT.ts \
+    Languages/pt-BR.ts \
+    Languages/zh-TW.ts \
+    Languages/zh-CN.ts \
+    Languages/fi-FI.ts \
+    Languages/ko-KR.ts \
+    Languages/ru-RU.ts \
+    Languages/cs-CZ.ts \
+    Languages/ja-JP.ts
 
 
 linux {

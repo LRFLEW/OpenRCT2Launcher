@@ -1,6 +1,6 @@
 language: c++
 script:
-  - qmake $QMAKE_ARGS && make
+  - lrelease && qmake $QMAKE_ARGS && make
 deploy:
   provider: releases
   api_key:

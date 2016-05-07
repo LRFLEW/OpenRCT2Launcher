@@ -42,6 +42,10 @@ Makefile*
 *.qmlproject.user
 *.qmlproject.user.*
 
+# QtLinguist
+
+*.qm
+
 
 ### OSX ###
 .DS_Store
