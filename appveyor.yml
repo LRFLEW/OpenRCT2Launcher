@@ -7,9 +7,9 @@ install:
     "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
 build_script:
 - cmd: >-
-    lrelease
+    lrelease OpenRCT2Launcher.pro
 
-    qmake
+    qmake OpenRCT2Launcher.pro
 
     nmake
 

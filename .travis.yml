@@ -1,6 +1,6 @@
 language: c++
 script:
-  - lrelease && qmake $QMAKE_ARGS && make
+  - lrelease OpenRCT2Launcher.pro && qmake $QMAKE_ARGS OpenRCT2Launcher.pro && make
 deploy:
   provider: releases
   api_key:
