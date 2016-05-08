@@ -125,19 +125,9 @@
         <translation>Spelarens Namn:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="567"/>
-        <source>Player</source>
-        <translation>Spelare</translation>
-    </message>
-    <message>
         <location filename="../configuration.ui" line="590"/>
         <source>Server Name</source>
         <translation>Server Namn</translation>
-    </message>
-    <message>
-        <location filename="../configuration.ui" line="612"/>
-        <source>Server</source>
-        <translation>Server</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="622"/>
@@ -145,42 +135,42 @@
         <translation>Server Lösenord:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="657"/>
+        <location filename="../configuration.ui" line="654"/>
         <source>Server Port:</source>
         <translation>Server Port:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="692"/>
+        <location filename="../configuration.ui" line="689"/>
         <source>Max number of player on server:</source>
         <translation>Max antal spelare på servern:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="732"/>
+        <location filename="../configuration.ui" line="729"/>
         <source>Advertise server on global server list</source>
         <translation>Visa servern för alla spelare på den globala serverlistan</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="751"/>
+        <location filename="../configuration.ui" line="748"/>
         <source>Server Description:</source>
         <translation>Server Beskrivning:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="765"/>
+        <location filename="../configuration.ui" line="762"/>
         <source>Provider Name:</source>
         <translation>Ägarens Namn:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="779"/>
+        <location filename="../configuration.ui" line="776"/>
         <source>Provider Email:</source>
         <translation>Ägarens Email:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="793"/>
+        <location filename="../configuration.ui" line="790"/>
         <source>Provider Website:</source>
         <translation>Ägarens Hemsida:</translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="807"/>
+        <location filename="../configuration.ui" line="804"/>
         <source>Master Server Override:</source>
         <translation>Huvudserver Override:</translation>
     </message>
