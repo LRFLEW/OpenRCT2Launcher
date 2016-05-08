@@ -564,7 +564,7 @@
             </size>
            </property>
            <property name="text">
-            <string>Player</string>
+            <string notr="true">Player</string>
            </property>
            <property name="config" stdset="0">
             <string notr="true">network/player_name</string>
@@ -609,7 +609,7 @@
             </size>
            </property>
            <property name="text">
-            <string>Server</string>
+            <string notr="true">Server</string>
            </property>
            <property name="config" stdset="0">
             <string notr="true">network/server_name</string>
@@ -639,9 +639,6 @@
              <width>160</width>
              <height>0</height>
             </size>
-           </property>
-           <property name="text">
-            <string/>
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>

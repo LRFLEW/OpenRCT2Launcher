@@ -124,18 +124,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="567"/>
-        <source>Player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../configuration.ui" line="590"/>
         <source>Server Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../configuration.ui" line="612"/>
-        <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -144,42 +134,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="657"/>
+        <location filename="../configuration.ui" line="654"/>
         <source>Server Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="692"/>
+        <location filename="../configuration.ui" line="689"/>
         <source>Max number of player on server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="732"/>
+        <location filename="../configuration.ui" line="729"/>
         <source>Advertise server on global server list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="751"/>
+        <location filename="../configuration.ui" line="748"/>
         <source>Server Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="765"/>
+        <location filename="../configuration.ui" line="762"/>
         <source>Provider Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="779"/>
+        <location filename="../configuration.ui" line="776"/>
         <source>Provider Email:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="793"/>
+        <location filename="../configuration.ui" line="790"/>
         <source>Provider Website:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configuration.ui" line="807"/>
+        <location filename="../configuration.ui" line="804"/>
         <source>Master Server Override:</source>
         <translation type="unfinished"></translation>
     </message>
