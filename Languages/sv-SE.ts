@@ -11,8 +11,7 @@
     <message>
         <location filename="../configuration.ui" line="42"/>
         <source>Launcher</source>
-        <translatorcomment>There isnt really anything you can translate this with</translatorcomment>
-        <translation>Launcher</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="50"/>
@@ -27,17 +26,17 @@
     <message>
         <location filename="../configuration.ui" line="75"/>
         <source>Branch:</source>
-        <translation>Version:</translation>
+        <translation>Gren-Version:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="98"/>
         <source>Stable</source>
-        <translation>Stabila versionen</translation>
+        <translation>Stabila</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="108"/>
         <source>Develop</source>
-        <translation>Utvecklande versionen</translation>
+        <translation>Utvecklande</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="159"/>
@@ -82,7 +81,7 @@
     <message>
         <location filename="../configuration.ui" line="392"/>
         <source>Window edge snapping distance:</source>
-        <translation>Avståndet för fönstrets 'fäst' funktion:</translation>
+        <translation>Avståndet för fönstrets &apos;fäst&apos; funktion:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="426"/>
@@ -92,7 +91,7 @@
     <message>
         <location filename="../configuration.ui" line="436"/>
         <source>Allow loading files with incorrect checksums</source>
-        <translation>Tillåt filer med inkorrekta 'checksums' att laddas</translation>
+        <translation>Tillåt filer med inkorrekta &apos;checksums&apos; att laddas</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="448"/>
@@ -137,7 +136,7 @@
     <message>
         <location filename="../configuration.ui" line="654"/>
         <source>Server Port:</source>
-        <translation>Server Port:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="689"/>
@@ -162,7 +161,7 @@
     <message>
         <location filename="../configuration.ui" line="776"/>
         <source>Provider Email:</source>
-        <translation>Ägarens Email:</translation>
+        <translation>Ägarens E-post:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="790"/>
@@ -182,7 +181,7 @@
     <message>
         <location filename="../configuration.cpp" line="20"/>
         <source>OpenRCT2 Build: </source>
-        <translation>OpenRCT2 Versionen:</translation>
+        <translation>OpenRCT2 Version:</translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="23"/>
@@ -200,7 +199,7 @@
     <message>
         <location filename="../mainwindow.ui" line="32"/>
         <source>OpenRCT2 Launcher</source>
-        <translation>OpenRCT2 Launcher</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="94"/>
@@ -238,17 +237,17 @@
     <message>
         <location filename="../updater.cpp" line="82"/>
         <source>Installed Version: </source>
-        <translation>Installerad Version:</translation>
+        <translation>Installerad Version: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="85"/>
         <source>Latest Version: </source>
-        <translation>Senaste Versionen:</translation>
+        <translation>Senaste Version: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="90"/>
         <source>Download Page</source>
-        <translation>Nedladdnings Hemsida</translation>
+        <translation>Hemsidan för Nedladdningen</translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="145"/>
@@ -260,7 +259,6 @@
         <location filename="../updater.cpp" line="159"/>
         <location filename="../updater.cpp" line="165"/>
         <source>bin dir not created</source>
-        <translatorcomment>&quot;bin folder is not created&quot; - correct?</translatorcomment>
         <translation>bin mappen är inte skapad</translation>
     </message>
     <message>
