@@ -11,7 +11,7 @@
     <message>
         <location filename="../configuration.ui" line="42"/>
         <source>Launcher</source>
-        <translatorcomment>There isn&apos;t really anything you can translate this with</translatorcomment>
+        <translatorcomment>There isnt really anything you can translate this with</translatorcomment>
         <translation>Launcher</translation>
     </message>
     <message>
@@ -82,7 +82,7 @@
     <message>
         <location filename="../configuration.ui" line="392"/>
         <source>Window edge snapping distance:</source>
-        <translation>Avståndet för fönstrets &apos;fäst&apos; funktion:</translation>
+        <translation>Avståndet för fönstrets 'fäst' funktion:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="426"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../configuration.ui" line="436"/>
         <source>Allow loading files with incorrect checksums</source>
-        <translation>Tillåt filer med inkorrekta &apos;checksums&apos; att laddas</translation>
+        <translation>Tillåt filer med inkorrekta 'checksums' att laddas</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="448"/>
