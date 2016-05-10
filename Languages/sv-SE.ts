@@ -176,17 +176,17 @@
     <message>
         <location filename="../configuration.cpp" line="17"/>
         <source>Launcher Version: </source>
-        <translation>Launcherns Version:</translation>
+        <translation>Launcherns Version: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="20"/>
         <source>OpenRCT2 Build: </source>
-        <translation>OpenRCT2 Version:</translation>
+        <translation>OpenRCT2 Version: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="23"/>
         <source>OpenRCT2 Git Hash: </source>
-        <translation>OpenRCT2 Git Version:</translation>
+        <translation>OpenRCT2 Git Version: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="153"/>
