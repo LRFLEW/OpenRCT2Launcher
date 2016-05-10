@@ -46,7 +46,7 @@
     <message>
         <location filename="../configuration.ui" line="172"/>
         <source>OpenRCT2 Git Hash: n/a</source>
-        <translation>OpenRCT2 Git Hash: n/a</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="199"/>
@@ -176,17 +176,17 @@
     <message>
         <location filename="../configuration.cpp" line="17"/>
         <source>Launcher Version: </source>
-        <translation>啟動器版本:</translation>
+        <translation>啟動器版本: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="20"/>
         <source>OpenRCT2 Build: </source>
-        <translation>OpenRCT2 版本:</translation>
+        <translation>OpenRCT2 版本: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="23"/>
         <source>OpenRCT2 Git Hash: </source>
-        <translation>OpenRCT2 Git Hash:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="153"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="../updater.cpp" line="82"/>
         <source>Installed Version: </source>
-        <translation>已安裝版本:</translation>
+        <translation>已安裝版本: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="85"/>
         <source>Latest Version: </source>
-        <translation>最新版本:</translation>
+        <translation>最新版本: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="90"/>
