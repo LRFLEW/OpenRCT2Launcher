@@ -11,7 +11,7 @@
     <message>
         <location filename="../configuration.ui" line="42"/>
         <source>Launcher</source>
-        <translation>Launcher</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="50"/>
