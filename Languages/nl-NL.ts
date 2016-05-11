@@ -112,7 +112,7 @@
     <message>
         <location filename="../configuration.ui" line="497"/>
         <source>Hide RCT1 Mega Park when not unlocked</source>
-        <translation>Verberg het RCT1 Mega Park wanneer deze nog niet ontgrendeld is</translation>
+        <translation>Verberg het RCT1 Mega Park als deze niet ontgrendeld is</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="524"/>
@@ -127,22 +127,22 @@
     <message>
         <location filename="../configuration.ui" line="590"/>
         <source>Server Name</source>
-        <translation>Naam van de server:</translation>
+        <translation>Naam voor server:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="622"/>
         <source>Server Password:</source>
-        <translation>Wachtwoord van de server:</translation>
+        <translation>Wachtwoord voor server:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="654"/>
         <source>Server Port:</source>
-        <translation>Poort van de server:</translation>
+        <translation>Poort voor server:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="689"/>
         <source>Max number of player on server:</source>
-        <translation>Maximum aantal spelers op de server:</translation>
+        <translation>Maximum aantal spelers voor server:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="729"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../mainwindow.ui" line="94"/>
         <source>Play</source>
-        <translation>Start OpenRCT2</translation>
+        <translation>Starten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="146"/>
