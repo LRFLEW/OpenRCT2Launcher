@@ -16,7 +16,7 @@
     <message>
         <location filename="../configuration.ui" line="50"/>
         <source>RCT2 Location:</source>
-        <translation>RCT2 Map</translation>
+        <translation>RCT2 Map:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="64"/>
@@ -62,7 +62,7 @@
     <message>
         <location filename="../configuration.ui" line="318"/>
         <source>Windowed Size:</source>
-        <translation>Schermresolutie</translation>
+        <translation>Venster grootte:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="338"/>
@@ -152,27 +152,27 @@
     <message>
         <location filename="../configuration.ui" line="748"/>
         <source>Server Description:</source>
-        <translation>Beschrijving van de server</translation>
+        <translation>Beschrijving van de server:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="762"/>
         <source>Provider Name:</source>
-        <translation>Naam van provider</translation>
+        <translation>Naam van provider:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="776"/>
         <source>Provider Email:</source>
-        <translation>E-mail van procider</translation>
+        <translation>E-mail van provider:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="790"/>
         <source>Provider Website:</source>
-        <translation>Website van provider</translation>
+        <translation>Website van provider:</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="804"/>
         <source>Master Server Override:</source>
-        <translation>Master Server Alternatief</translation>
+        <translation>Master Server Alternatief:</translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="17"/>
