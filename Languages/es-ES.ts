@@ -41,7 +41,7 @@
     <message>
         <location filename="../configuration.ui" line="159"/>
         <source>OpenRCT2 Build: n/a</source>
-        <translation>OpenRCT2 Compilación:</translation>
+        <translation>OpenRCT2 Compilación: n/a</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="172"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../configuration.ui" line="380"/>
         <source>Use small font in debug console</source>
-        <translation>Usar texto pequeño en la consola de depuración.</translation>
+        <translation>Usar texto pequeño en la consola de depuración</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="392"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="../configuration.ui" line="477"/>
         <source>Always prompt for save location</source>
-        <translation>Siempre preguntar donde guardar una partida.</translation>
+        <translation>Siempre preguntar donde guardar una partida</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="487"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../configuration.ui" line="497"/>
         <source>Hide RCT1 Mega Park when not unlocked</source>
-        <translation>Ocultar Mega Parque de RCT1 cuando no está desbloqueado.</translation>
+        <translation>Ocultar Mega Parque de RCT1 cuando no está desbloqueado</translation>
     </message>
     <message>
         <location filename="../configuration.ui" line="524"/>
@@ -176,7 +176,7 @@
     <message>
         <location filename="../configuration.cpp" line="17"/>
         <source>Launcher Version: </source>
-        <translation>Versión del Lanzador:</translation>
+        <translation>Versión del Lanzador: </translation>
     </message>
     <message>
         <location filename="../configuration.cpp" line="20"/>
@@ -238,12 +238,12 @@
     <message>
         <location filename="../updater.cpp" line="82"/>
         <source>Installed Version: </source>
-        <translation>Version Instalada:</translation>
+        <translation>Version Instalada: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="85"/>
         <source>Latest Version: </source>
-        <translation>Última Version:</translation>
+        <translation>Última Version: </translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="90"/>
