@@ -260,7 +260,7 @@
         <location filename="../updater.cpp" line="159"/>
         <location filename="../updater.cpp" line="165"/>
         <source>bin dir not created</source>
-        <translation>De bin map kon niet worden aangemaakt</translation>
+        <translation>Fout bij maken van &apos;bin&apos;-map</translation>
     </message>
     <message>
         <location filename="../updater.cpp" line="177"/>
