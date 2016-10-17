@@ -1,13 +1,32 @@
 version: 0.0.5#{build}
 image: Visual Studio 2015
-install:
+init:
 - cmd: >-
-    SET PATH=%PATH%;C:\Qt\5.6\msvc2015\bin
+    SET PATH=%PATH%;C:\Qt\5.6\msvc2015\bin;"C:\Program Files (x86)\Inno Setup 5"
 
     "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
+install:
+- ps: >-
+    $opensslVersion = "1.0.2j"
+
+    choco install innosetup
+
+    [Environment]::CurrentDirectory = $PWD
+
+    $opensslName = "openssl-$opensslVersion-vs2015"
+
+    $opensslDownloadUrl = "http://www.npcglib.org/~stathis/downloads/$opensslName.7z"
+
+    $wc = New-Object net.webclient
+
+    $wc.Downloadfile($opensslDownloadUrl, "$opensslName.7z")
+
+    7z x "$opensslName.7z"
+
+    Rename-Item "$opensslName" openssl
 build_script:
 - cmd: >-
-    qmake
+    qmake OpenRCT2Launcher.pro
 
     nmake
 
@@ -17,15 +36,11 @@ build_script:
 
     windeployqt build-Windows\OpenRCT2.exe
 
-    copy compiled_libs\libeay32.dll build-Windows\libeay32.dll
+    copy openssl\bin\libeay32MD.dll build-Windows\libeay32.dll
 
-    copy compiled_libs\ssleay32.dll build-Windows\ssleay32.dll
+    copy openssl\bin\ssleay32MD.dll build-Windows\ssleay32.dll
 
     pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win.zip * & popd
-
-    choco install innosetup
-
-    set PATH="C:\Program Files (x86)\Inno Setup 5";%PATH%
 
     iscc installer.iss
 artifacts:
