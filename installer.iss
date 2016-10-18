@@ -7,6 +7,16 @@
 #define MyAppURL "http://www.github.com/LRFLEW/OpenRCT2Launcher"
 #define MyAppExeName "OpenRCT2.exe"
 
+#ifndef BUILD64
+#define BUILD64 True
+#endif
+
+#if BUILD64
+#define REDIST "vcredist_x64.exe"
+#else
+#define REDIST "vcredist_x86.exe"
+#endif
+
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
@@ -24,6 +34,21 @@ OutputBaseFilename=OpenRCT2Launcher-win
 Compression=lzma
 SolidCompression=yes
 
+#if BUILD64
+ArchitecturesInstallIn64BitMode=x64
+ArchitecturesAllowed=x64
+#else
+[Code]
+function InitializeSetup(): Boolean;
+begin
+  if ProcessorArchitecture = paX64 then
+    Result := SuppressibleMsgBox('It appears that you are installing this 32-bit version on a 64-bit machine.' #13#10 #13#10
+                                 'It''s recommended you use the 64-bit version of the launcher instead.' #13#10 #13#10
+                                 'Continue Anyways?', mbInformation, MB_YESNO or MB_DEFBUTTON2, 0) = IDYES
+  else Result := True;
+end;
+#endif
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -39,6 +64,6 @@ Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\vcredist_x86.exe"; Parameters: "/passive /norestart"
+Filename: "{app}\{#REDIST}"; Parameters: "/passive /norestart"
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
