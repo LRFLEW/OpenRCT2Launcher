@@ -7,11 +7,7 @@
 #define MyAppURL "http://www.github.com/LRFLEW/OpenRCT2Launcher"
 #define MyAppExeName "OpenRCT2.exe"
 
-#ifndef BUILD64
-#define BUILD64 True
-#endif
-
-#if BUILD64
+#ifdef BUILD64
 #define REDIST "vcredist_x64.exe"
 #else
 #define REDIST "vcredist_x86.exe"
@@ -34,7 +30,7 @@ OutputBaseFilename=OpenRCT2Launcher-win
 Compression=lzma
 SolidCompression=yes
 
-#if BUILD64
+#ifdef BUILD64
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
 #else
