@@ -204,7 +204,7 @@
          <item>
           <widget class="QLabel" name="label_14">
            <property name="text">
-            <string>Language</string>
+            <string>Language:</string>
            </property>
           </widget>
          </item>
@@ -587,7 +587,7 @@
          <item row="1" column="1">
           <widget class="QLabel" name="label_31">
            <property name="text">
-            <string>Server Name</string>
+            <string>Server Name:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
