@@ -113,10 +113,11 @@ void Updater::receivedAPI() {
         return;
     }
 
+    QString flavor = settings.value(QStringLiteral("downloadFlavour")).toString();
     QString have = settings.value(QStringLiteral("downloadId")).toString();
     version = robj[QStringLiteral("downloadId")].toString();
 
-    if (have == version && OPENRCT2_HOMEDIR.cd(QStringLiteral(OPENRCT2_BIN))) {
+    if (flavor == OPENRCT2_FLAVOR && have == version && OPENRCT2_HOMEDIR.cd(QStringLiteral(OPENRCT2_BIN))) {
         emit installed();
     } else {
         size = robj[QStringLiteral("fileSize")].toInt();
@@ -170,6 +171,7 @@ void Updater::receivedBundle() {
     if (extract(data, bin)) {
         emit installed();
 
+        settings.setValue(QStringLiteral("downloadFlavour"), OPENRCT2_FLAVOR);
         settings.setValue(QStringLiteral("downloadId"), version);
         settings.setValue(QStringLiteral("gitHash"), githash);
         settings.sync();

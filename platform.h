@@ -45,6 +45,14 @@
 
 #endif
 
+#ifdef Q_OS_OSX // macOS doesn't differentiate bit-ness
+#define OPENRCT2_BIT_SUFFIX
+#elif Q_PROCESSOR_X86_64
+#define OPENRCT2_BIT_SUFFIX " x64"
+#else
+#define OPENRCT2_BIT_SUFFIX " x86"
+#endif
+
 #define OPENRCT2_BIN OPENRCT2_BASE "bin/"
 #define OPENRCT2_EXEC_LOCATION OPENRCT2_BIN OPENRCT2_EXEC_NAME
 

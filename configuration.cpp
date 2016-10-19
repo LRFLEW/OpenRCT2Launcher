@@ -14,7 +14,7 @@ Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *par
     ui->setupUi(this);
     setComboBoxData();
 
-    ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION));
+    ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION OPENRCT2_BIT_SUFFIX));
 
     QVariant build = mainSettings->value(QStringLiteral("downloadId"));
     if (build.isValid()) ui->buildVersionMsg->setText(tr("OpenRCT2 Build: ") + build.toString());
