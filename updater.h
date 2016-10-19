@@ -30,13 +30,14 @@ private slots:
 
 private:
     bool extract(QByteArray &data, QDir &bin);
+    void queryDownloads(QString flavor);
 
-    QUrl url;
     QNetworkAccessManager net;
     int size;
     QByteArray hash;
     QByteArray githash;
     QString version;
+    bool fallback;
 
     QNetworkReply *update = nullptr;
     QNetworkReply *api = nullptr;

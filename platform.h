@@ -12,6 +12,7 @@
 
 #ifdef Q_PROCESSOR_X86_64
 #define OPENRCT2_FLAVOR "6"
+#define OPENRCT2_FLAVOR_FALLBACK "1"
 #else
 #define OPENRCT2_FLAVOR "1"
 #endif
@@ -32,6 +33,7 @@
 
 #ifdef Q_PROCESSOR_X86_64
 #define OPENRCT2_FLAVOR "9"
+#define OPENRCT2_FLAVOR_FALLBACK "4"
 #else
 #define OPENRCT2_FLAVOR "4"
 #endif

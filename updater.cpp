@@ -22,19 +22,18 @@
 #include <QTemporaryFile>
 #include <QUrlQuery>
 
-Updater::Updater(QObject *parent) : QObject(parent), url(QStringLiteral("https://openrct2.org/altapi/"))
+Updater::Updater(QObject *parent) : QObject(parent)
 {
     connect(&net, &QNetworkAccessManager::sslErrors, [](QNetworkReply * reply, const QList<QSslError> & errors){Q_UNUSED(reply); qDebug() << errors;});
 }
 
-void Updater::download() {
-    if (update != nullptr) update->abort(), update = nullptr;
-    if (api != nullptr) api->abort(), api = nullptr;
-    if (bundle != nullptr) bundle->abort(), bundle = nullptr;
+void Updater::queryDownloads(QString flavor) {
+    QUrl url(QStringLiteral("https://openrct2.org/altapi/"));
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("command"), QStringLiteral("get-latest-download"));
-    query.addQueryItem(QStringLiteral("flavourId"), QStringLiteral(OPENRCT2_FLAVOR));
+    query.addQueryItem(QStringLiteral("flavourId"), flavor);
+    fallback = false;
 
     QVariant stableVar = settings.value(QStringLiteral("stable"));
     bool stable = stableVar.isValid() && stableVar.toBool();
@@ -42,19 +41,28 @@ void Updater::download() {
 
     url.setQuery(query.query());
 
-    QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
-    update = net.get(urequest);
-    connect(update, &QNetworkReply::finished, this, &Updater::receivedUpdate);
-
     QNetworkRequest request(url);
     api = net.get(request);
     connect(api, &QNetworkReply::finished, this, &Updater::receivedAPI);
+}
+
+void Updater::download() {
+    if (update != nullptr) update->abort(), update->deleteLater(), update = nullptr;
+    if (api != nullptr) api->abort(), api->deleteLater(), api = nullptr;
+    if (bundle != nullptr) bundle->abort(), bundle->deleteLater(), bundle = nullptr;
+
+    queryDownloads(QStringLiteral(OPENRCT2_FLAVOR));
+
+    QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
+    update = net.get(urequest);
+    connect(update, &QNetworkReply::finished, this, &Updater::receivedUpdate);
 }
 
 void Updater::receivedUpdate() {
     if (update->error() != QNetworkReply::NoError) {
         // Don't emit, so the error is mostly silent
         qDebug() << update->errorString();
+        update->deleteLater(), update = nullptr;
         return;
     }
 
@@ -98,6 +106,7 @@ void Updater::receivedUpdate() {
 void Updater::receivedAPI() {
     if (api->error() != QNetworkReply::NoError) {
         emit error(api->errorString());
+        api->deleteLater(), api = nullptr;
         return;
     }
 
@@ -109,6 +118,15 @@ void Updater::receivedAPI() {
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
     if (robj[QStringLiteral("error")].toInt() != 0) {
+
+#ifdef OPENRCT2_FLAVOR_FALLBACK
+        if (!fallback && robj[QStringLiteral("errorMessage")].toString() == "No download available.") {
+            // Try 32-bit on 64-bit
+            queryDownloads(QStringLiteral(OPENRCT2_FLAVOR_FALLBACK));
+            return;
+        }
+#endif
+
         emit error(robj[QStringLiteral("errorMessage")].toString());
         return;
     }
@@ -134,6 +152,7 @@ void Updater::receivedAPI() {
 void Updater::receivedBundle() {
     if (bundle->error() != QNetworkReply::NoError) {
         emit error(bundle->errorString());
+        bundle->deleteLater(), bundle = nullptr;
         return;
     }
 
