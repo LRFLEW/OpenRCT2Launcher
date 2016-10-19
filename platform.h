@@ -45,9 +45,9 @@
 
 #endif
 
-#ifdef Q_OS_OSX // macOS doesn't differentiate bit-ness
+#if defined(Q_OS_OSX) // macOS doesn't differenciate bit-ness
 #define OPENRCT2_BIT_SUFFIX
-#elif Q_PROCESSOR_X86_64
+#elif defined(Q_PROCESSOR_X86_64)
 #define OPENRCT2_BIT_SUFFIX " x64"
 #else
 #define OPENRCT2_BIT_SUFFIX " x86"
