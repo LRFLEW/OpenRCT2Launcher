@@ -4,31 +4,25 @@ environment:
   matrix:
   - VC_ARCH: x86
     QT_PATH: C:\Qt\5.7\msvc2015
-    SSL_BIN: bin
+    SSL_BUILD: jjlsys3xhwn410sw
     INNO_ARGS: 
   - VC_ARCH: amd64
     QT_PATH: C:\Qt\5.7\msvc2015_64
-    SSL_BIN: bin64
+    SSL_BUILD: r2cuqxx95y9bcrwk
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
-    $opensslVersion = "1.0.2j"
-
     choco install innosetup
 
     [Environment]::CurrentDirectory = $PWD
 
-    $opensslName = "openssl-$opensslVersion-vs2015"
-
-    $opensslDownloadUrl = "http://www.npcglib.org/~stathis/downloads/$opensslName.7z"
+    $opensslDownloadUrl = "https://ci.appveyor.com/api/buildjobs/$Env:SSL_BUILD/artifacts/OpenSSL-DLLs.zip"
 
     $wc = New-Object net.webclient
 
-    $wc.Downloadfile($opensslDownloadUrl, "$opensslName.7z")
+    $wc.Downloadfile($opensslDownloadUrl, "OpenSSL-DLLs.zip")
 
-    7z x "$opensslName.7z"
-
-    Rename-Item "$opensslName" openssl
+    7z e "OpenSSL-DLLs.zip"
 build_script:
 - cmd: >-
     SET PATH=%PATH%;%QT_PATH%\bin;"C:\Program Files (x86)\Inno Setup 5"
@@ -45,9 +39,9 @@ build_script:
 
     windeployqt build-Windows\OpenRCT2.exe
 
-    copy openssl\%SSL_BIN%\libeay32MD.dll build-Windows\libeay32.dll
+    copy libeay32.dll build-Windows\
 
-    copy openssl\%SSL_BIN%\ssleay32MD.dll build-Windows\ssleay32.dll
+    copy ssleay32.dll build-Windows\
 
     pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win.zip * & popd
 
