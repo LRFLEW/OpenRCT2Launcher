@@ -750,6 +750,9 @@
            <property name="text">
             <string>Server Description:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="1">
@@ -763,6 +766,9 @@
           <widget class="QLabel" name="label_33">
            <property name="text">
             <string>Provider Name:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -778,6 +784,9 @@
            <property name="text">
             <string>Provider Email:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="2" column="1">
@@ -792,6 +801,9 @@
            <property name="text">
             <string>Provider Website:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="3" column="1">
@@ -805,6 +817,9 @@
           <widget class="QLabel" name="label_36">
            <property name="text">
             <string>Master Server Override:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
