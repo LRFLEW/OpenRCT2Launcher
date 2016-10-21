@@ -26,14 +26,16 @@ AppPublisherURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=.
-OutputBaseFilename=OpenRCT2Launcher-win
 Compression=lzma
 SolidCompression=yes
 
 #ifdef BUILD64
+OutputBaseFilename=OpenRCT2Launcher-win
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
 #else
+OutputBaseFilename=OpenRCT2Launcher-win-x86
+
 [Code]
 function InitializeSetup(): Boolean;
 begin

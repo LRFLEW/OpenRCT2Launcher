@@ -6,6 +6,7 @@ environment:
     QT_PATH: C:\Qt\5.7\msvc2015
     SSL_BUILD: jjlsys3xhwn410sw
     INNO_ARGS: 
+    ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
     QT_PATH: C:\Qt\5.7\msvc2015_64
     SSL_BUILD: r2cuqxx95y9bcrwk
@@ -43,13 +44,13 @@ build_script:
 
     copy ssleay32.dll build-Windows\
 
-    pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win.zip * & popd
+    pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win%ARTIFACT_SUFFIX%.zip * & popd
 
     iscc %INNO_ARGS% installer.iss
 artifacts:
-- path: OpenRCT2Launcher-win.zip
+- path: OpenRCT2Launcher-win*.zip
   name: zip-archive
-- path: OpenRCT2Launcher-win.exe
+- path: OpenRCT2Launcher-win*.exe
   name: exe-installer
 deploy:
 - provider: GitHub
