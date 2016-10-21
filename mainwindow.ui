@@ -53,6 +53,9 @@
       <property name="pixmap">
        <pixmap resource="resources.qrc">:/splash.png</pixmap>
       </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
       <property name="alignment">
        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
       </property>

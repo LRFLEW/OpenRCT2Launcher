@@ -16,12 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->setHidden(true);
     connect(ui->launchButton, &QPushButton::clicked, this, &MainWindow::launch);
 
-#ifndef Q_OS_OSX
-    ui->splash->setScaledContents(true);
-#endif
-
     connect(&updater, &Updater::installed, [this]{ ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
-    connect(&updater, &Updater::error, [this](QString error){ qDebug() << error; ui->errorLabel->setText(error); ui->launchButton->setEnabled(true); });
+    connect(&updater, &Updater::error, [this](QString error){
+        qDebug() << error; ui->errorLabel->setText(error); ui->progressBar->setHidden(true); ui->launchButton->setEnabled(true); });
     connect(&updater, &Updater::downloadProgress, [this](qint64 bytesReceived, qint64 bytesTotal){
         ui->progressBar->setHidden(false); ui->progressBar->setMaximum(bytesTotal); ui->progressBar->setValue(bytesReceived); });
 
@@ -43,7 +40,8 @@ void MainWindow::on_optionsButton_clicked() {
     }
 
     Configuration config(&updater.settings, dir.filePath(QStringLiteral("config.ini")));
-    connect(&config, &Configuration::redownload, [this]{ ui->launchButton->setEnabled(false); updater.download(); });
+    connect(&config, &Configuration::redownload, [this]{ ui->launchButton->setEnabled(false);
+        ui->errorLabel->setText(QStringLiteral("")); updater.download(); ui->progressBar->setHidden(true); });
     config.exec();
 }
 

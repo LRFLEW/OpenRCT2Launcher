@@ -25,6 +25,10 @@
 Updater::Updater(QObject *parent) : QObject(parent)
 {
     connect(&net, &QNetworkAccessManager::sslErrors, [](QNetworkReply * reply, const QList<QSslError> & errors){Q_UNUSED(reply); qDebug() << errors;});
+
+    QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
+    update = net.get(urequest);
+    connect(update, &QNetworkReply::finished, this, &Updater::receivedUpdate);
 }
 
 void Updater::queryDownloads(QString flavor) {
@@ -47,15 +51,10 @@ void Updater::queryDownloads(QString flavor) {
 }
 
 void Updater::download() {
-    if (update != nullptr) update->abort(), update->deleteLater(), update = nullptr;
     if (api != nullptr) api->abort(), api->deleteLater(), api = nullptr;
     if (bundle != nullptr) bundle->abort(), bundle->deleteLater(), bundle = nullptr;
 
     queryDownloads(QStringLiteral(OPENRCT2_FLAVOR));
-
-    QNetworkRequest urequest(QStringLiteral("https://api.github.com/repos/LRFLEW/OpenRCT2Launcher/releases/latest"));
-    update = net.get(urequest);
-    connect(update, &QNetworkReply::finished, this, &Updater::receivedUpdate);
 }
 
 void Updater::receivedUpdate() {
@@ -105,8 +104,10 @@ void Updater::receivedUpdate() {
 
 void Updater::receivedAPI() {
     if (api->error() != QNetworkReply::NoError) {
-        emit error(api->errorString());
-        api->deleteLater(), api = nullptr;
+        if (api->error() != QNetworkReply::OperationCanceledError) {
+            emit error(api->errorString());
+            api->deleteLater(), api = nullptr;
+        }
         return;
     }
 
@@ -151,8 +152,10 @@ void Updater::receivedAPI() {
 
 void Updater::receivedBundle() {
     if (bundle->error() != QNetworkReply::NoError) {
-        emit error(bundle->errorString());
-        bundle->deleteLater(), bundle = nullptr;
+        if (bundle->error() != QNetworkReply::OperationCanceledError) {
+            emit error(bundle->errorString());
+            bundle->deleteLater(), bundle = nullptr;
+        }
         return;
     }
 
