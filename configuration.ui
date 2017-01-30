@@ -95,7 +95,7 @@
          <item>
           <widget class="QRadioButton" name="stableButton">
            <property name="text">
-            <string>Stable</string>
+            <string>Release</string>
            </property>
            <property name="checkable">
             <bool>true</bool>
