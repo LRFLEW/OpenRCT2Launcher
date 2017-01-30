@@ -154,19 +154,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="buildVersionMsg">
-         <property name="text">
-          <string>OpenRCT2 Build: n/a</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="textInteractionFlags">
-          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="buildHashMsg">
          <property name="text">
           <string>OpenRCT2 Git Hash: n/a</string>
