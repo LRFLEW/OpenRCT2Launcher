@@ -16,9 +16,6 @@ Configuration::Configuration(QSettings *mainSettings, QString file, QWidget *par
 
     ui->launcherVersionMsg->setText(tr("Launcher Version: ") + QStringLiteral(APP_VERSION OPENRCT2_BIT_SUFFIX));
 
-    QVariant build = mainSettings->value(QStringLiteral("downloadId"));
-    if (build.isValid()) ui->buildVersionMsg->setText(tr("OpenRCT2 Build: ") + build.toString());
-
     QVariant hash = mainSettings->value(QStringLiteral("gitHash"));
     if (hash.isValid()) ui->buildHashMsg->setText(tr("OpenRCT2 Git Hash: ") + hash.toByteArray().left(4).toHex().left(7));
 
