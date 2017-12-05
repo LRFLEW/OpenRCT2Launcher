@@ -53,8 +53,8 @@ matrix:
         - sudo dpkg --add-architecture i386
         - sudo apt-get update -qq || true
       install:
+        - sudo apt-get install -y gcc-multilib g++-multilib zlib1g-dev:i386 libstdc++-4.8-dev:i386 libgl1-mesa-dev:i386 libgl1-mesa-dev:i386
         - sudo apt-get install -y qtchooser qtbase5-dev:i386 qtmultimedia5-dev:i386 qt5-qmake:i386 qtbase5-dev-tools:i386
-        - sudo apt-get install -y g++-multilib zlib1g-dev:i386 libstdc++-4.8-dev:i386
       before_deploy:
         - tar -czf OpenRCT2Launcher-Linux-x86.tar.gz OpenRCT2
       env:
