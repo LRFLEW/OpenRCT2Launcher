@@ -28,7 +28,7 @@ build_script:
 - cmd: >-
     SET PATH=%PATH%;%QT_PATH%\bin;"C:\Program Files (x86)\Inno Setup 5"
 
-    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %VC_ARCH%
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %VC_ARCH%
 
     qmake OpenRCT2Launcher.pro
 
