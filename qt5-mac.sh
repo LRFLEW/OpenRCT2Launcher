@@ -1,9 +1,12 @@
 
-QT5_MAJOR=6
-QT5_MINOR=2
-QT5_PATCH=0
+QT5_MAJOR=9
+QT5_MINOR=3
+QT5_PATCH=0-201711211137
 
-QT5_OSX_VERSION=11
+# Qt likes to change how their filenames work
+QT5_SHORT=5${QT5_MAJOR}${QT5_MINOR}
+QT5_DIR=5.${QT5_MAJOR}.${QT5_MINOR}
+QT5_OS_VER=MacOS-MacOS_10_12
 
 if (( $# < 2 )); then
   echo "Usage: <destination> <component> [component...]"
@@ -13,9 +16,9 @@ fi
 
 for x in ${@:2}; do
   if [[ $x = extra-* ]]; then
-    DOWNLOAD_URL="https://download.qt.io/online/qtsdkrepository/mac_x64/desktop/qt5_5${QT5_MAJOR}/qt.5${QT5_MAJOR}.qt${x/#extra-/}.clang_64/5.${QT5_MAJOR}.${QT5_MINOR}-${QT5_PATCH}qt${x/#extra-/}-OSX-OSX_10_${QT5_OSX_VERSION}-Clang-OSX-OSX_10_${QT5_OSX_VERSION}-X86_64.7z"
+    DOWNLOAD_URL="https://download.qt.io/online/qtsdkrepository/mac_x64/desktop/qt5_${QT5_SHORT}/qt.${QT5_SHORT}.qt${x/#extra-/}.clang_64/${QT5_DIR}-${QT5_PATCH}qt${x/#extra-/}-${QT5_OS_VER}-Clang-${QT5_OS_VER}-X86_64.7z"
   else
-    DOWNLOAD_URL="https://download.qt.io/online/qtsdkrepository/mac_x64/desktop/qt5_5${QT5_MAJOR}/qt.5${QT5_MAJOR}.clang_64/5.${QT5_MAJOR}.${QT5_MINOR}-${QT5_PATCH}qt${x}-OSX-OSX_10_${QT5_OSX_VERSION}-Clang-OSX-OSX_10_${QT5_OSX_VERSION}-X86_64.7z"
+    DOWNLOAD_URL="https://download.qt.io/online/qtsdkrepository/mac_x64/desktop/qt5_${QT5_SHORT}/qt.${QT5_SHORT}.clang_64/${QT5_DIR}-${QT5_PATCH}qt${x}-${QT5_OS_VER}-Clang-${QT5_OS_VER}-X86_64.7z"
   fi
   
   DOWNLOAD_CHECK=$(curl -f ${DOWNLOAD_URL}.sha1 2>/dev/null)
@@ -36,10 +39,10 @@ for x in ${@:2}; do
 done
 
 # Minimal Qt Configuration File
-echo "[Paths]" > $1/5.${QT5_MAJOR}/clang_64/bin/qt.conf
-echo "Prefix=.." >> $1/5.${QT5_MAJOR}/clang_64/bin/qt.conf
+echo "[Paths]" > $1/${QT5_DIR}/clang_64/bin/qt.conf
+echo "Prefix=.." >> $1/${QT5_DIR}/clang_64/bin/qt.conf
 
 # Why does Qt default to Enterprise Licence?
-sed -i "" -E 's/^[[:space:]]*QT_EDITION[[:space:]]*=.*$/QT_EDITION = OpenSource/' $1/5.${QT5_MAJOR}/clang_64/mkspecs/qconfig.pri
+sed -i "" -E 's/^[[:space:]]*QT_EDITION[[:space:]]*=.*$/QT_EDITION = OpenSource/' $1/${QT5_DIR}/clang_64/mkspecs/qconfig.pri
 
-echo $1/5.${QT5_MAJOR}/clang_64/bin
+echo $1/${QT5_DIR}/clang_64/bin

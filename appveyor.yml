@@ -1,15 +1,15 @@
 version: 0.0.6#{build}
-image: Visual Studio 2015
+image: Visual Studio 2017
 environment:
   matrix:
   - VC_ARCH: x86
-    QT_PATH: C:\Qt\5.7\msvc2015
-    SSL_BUILD: jjlsys3xhwn410sw
+    QT_PATH: C:\Qt\5.9.2\msvc2015
+    SSL_BUILD: ynhxau083ib3wijj
     INNO_ARGS: 
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
-    QT_PATH: C:\Qt\5.7\msvc2015_64
-    SSL_BUILD: r2cuqxx95y9bcrwk
+    QT_PATH: C:\Qt\5.9.2\msvc2017_64
+    SSL_BUILD: l039oy962medy0f0
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
