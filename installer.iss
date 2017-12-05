@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenRCT2 Launcher"
-#define MyAppVersion "0.0.6"
+#define MyAppVersion "0.0.7"
 #define MyAppPublisher "OpenRCT2"
 #define MyAppURL "http://www.github.com/LRFLEW/OpenRCT2Launcher"
 #define MyAppExeName "OpenRCT2.exe"
