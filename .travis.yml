@@ -34,7 +34,7 @@ matrix:
         - macdeployqt OpenRCT2.app
         - zip -ryq OpenRCT2Launcher-osx.zip OpenRCT2.app
       env:
-        - DEPLOY_FILE=OpenRCT2Launcher-osx.zip
+        - DEPLOY_FILE=OpenRCT2Launcher-macos.zip
     - os: linux
       sudo: required
       dist: trusty
