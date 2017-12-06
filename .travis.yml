@@ -5,17 +5,17 @@ deploy:
   provider: releases
   api_key:
     secure: >
-      zyPGnsAU3XralPzpTf1dUvrQ8Hw6k12Xn3kJXGLEPOC8rb/JrGoW9MYlCC9TmZk
-      1J7CUZc0GLuX77vr2gU3afGURUofibQpXzEBVKVMl8Uf1yCp1J8hC++xjAq0RfT
-      hfuH0SW+iY2QwoM2G8Y3dUIMxViQs6FeiF9306rn9ohphFeudrkEG3L0vC5sfJ4
-      LiTnoJdZ/v0maeMXelRFx7VErHXLgf5xu6kI6P3+m5AzxnXuQ7L8Afw+/IC8vgc
-      bulxgCk8RZe1eKvp4WMW5LPFCVkt9upeanWqdw5tMj2kcb29KaMSp1uU281uLrM
-      rSvnuuiqFiDiRB3aKb7HqkE74pDkuixv4j++Q2gRziMsot1BED3KmvuFfeFln65
-      thpo+HVxB/xhWLC97dp6rXMk222E1aCHNHIpM8Aofq89z3GOtpCqYb11h68RSSO
-      C+mRJVp6BUviSgn8m/hOg730c3Nzr9SJor9PUR8je0zzkypgnYvG8suHcgWOu5a
-      4Papr9QVhTM1oEOVLxDcSj3A3uNrQBzTYr+ZXQOQOBOW0wtfayIGXocfibaZ08F
-      RnQ8Um9zBZALSwtTA7OxavBCJoJmaBGAg8MZsv7UcfWBZ/D0b+hjYst/xD7cXhr
-      BWSKXtQ3mzhkmuvpn6gv+LoJy8Jzp/kkbeFzXX/J5cm8pWLKwfOnk=
+      0HIS6srOsKsti3klaZ0XyADQZrXJJ/QQ8GO8sRQA2gmPaWB+7anEzN1kpuus7F2
+      Tqg0O3F3txh/nmdpAtJJFgIp60yDBjllwf9FYKwLofU7aP5FIWYkYIlJ2x1OFO8
+      7X+Dyoc5iNv/mDcmRVGbcCCHXz5RcLmUIBfwlGCE3ubc7i/4Kma+Ei0gJgoWVVt
+      N+h1s47EEqYPVDv5rKbL39Hki013EjFSl4JEjSts9oksL2fQsBFgcTA3SXTIxGN
+      SfVh6lZrO1JC8VLHwo1dwdZ7rbepE9xxYf/c1A2bVs6Hi3q0BTrkI4aecHoDwf3
+      4GARB+T6816mhOMM9HKlCpMSrLrbiit/kTVQjcL9GeHwEukjullHWpUEFD1nelD
+      cR3Dz9vk7YSc9ERk9Yg+GhFHrLYmZ0HpLnwsAsUL1Zc6ZlzWzoBCdy6sa8YDoVo
+      eWN559khUwVnHDh2xmGQfb8IXMYa+EsaniaU+V7bAcQdbyYNpC8J4pm4Qowhnfq
+      sWC8Jiu8zEC0y5aDnrXbxZeUvSFslX8L0DUQAoBW1egiUOHqAKXBEyZmkHeJ3Nc
+      O0piaePyfA80VqdnLB40LFxt+0hFkwsRc1aLqAWEr8F/e3N/54Sz0niOB7Ww6p5
+      UAldJGGhUguL6vkjiyHKqBq45MzJJ/k/E4gNn2yG3Pvu19CxPugMs=
   file: $DEPLOY_FILE
   skip_cleanup: true
   on:

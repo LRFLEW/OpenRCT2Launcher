@@ -55,7 +55,7 @@ artifacts:
 deploy:
 - provider: GitHub
   auth_token:
-    secure: U+ZR9yj0ExiwkxNQ5o/zhtschZ/kktjWmTMilMfbHCcD0dlyBYDVUCjQWbQ8jiA7
+    secure: US2B1AJBegrxUhjKUfbocWUqavl636DxnaUnl8a7/waGexpd5Dp/mN6JBZIS+6Ee
   artifact: zip-archive, exe-installer
   on:
     appveyor_repo_tag: true
