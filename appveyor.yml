@@ -4,12 +4,12 @@ environment:
   matrix:
   - VC_ARCH: x86
     QT_PATH: C:\Qt\5.9.2\msvc2015
-    SSL_BUILD: ynhxau083ib3wijj
+    SSL_BUILD: eti1fvaitgtxayif
     INNO_ARGS: 
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
     QT_PATH: C:\Qt\5.9.2\msvc2017_64
-    SSL_BUILD: l039oy962medy0f0
+    SSL_BUILD: bmkjgrjybfqyxg1n
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
