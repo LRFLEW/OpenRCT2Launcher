@@ -32,7 +32,7 @@ matrix:
         - PATH="$(./qt5-mac.sh . base tools):$PATH"
       before_deploy:
         - macdeployqt OpenRCT2.app
-        - zip -ryq OpenRCT2Launcher-osx.zip OpenRCT2.app
+        - zip -ryq OpenRCT2Launcher-macos.zip OpenRCT2.app
       env:
         - DEPLOY_FILE=OpenRCT2Launcher-macos.zip
     - os: linux
