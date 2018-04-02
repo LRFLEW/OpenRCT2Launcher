@@ -37,7 +37,6 @@ private:
     QByteArray hash;
     QByteArray githash;
     QString version;
-    bool fallback;
 
     QNetworkReply *update = nullptr;
     QNetworkReply *api = nullptr;

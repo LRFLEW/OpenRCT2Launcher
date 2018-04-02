@@ -37,7 +37,6 @@ void Updater::queryDownloads(QString flavor) {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("command"), QStringLiteral("get-latest-download"));
     query.addQueryItem(QStringLiteral("flavourId"), flavor);
-    fallback = false;
 
     QVariant stableVar = settings.value(QStringLiteral("stable"));
     bool stable = stableVar.isValid() && stableVar.toBool();
@@ -129,15 +128,6 @@ void Updater::receivedAPI() {
     QJsonDocument response = QJsonDocument::fromJson(data);
     QJsonObject robj = response.object();
     if (robj[QStringLiteral("error")].toInt() != 0) {
-
-#ifdef OPENRCT2_FLAVOR_FALLBACK
-        if (!fallback && robj[QStringLiteral("errorMessage")].toString() == "No download available.") {
-            // Try 32-bit on 64-bit
-            queryDownloads(QStringLiteral(OPENRCT2_FLAVOR_FALLBACK));
-            return;
-        }
-#endif
-
         emit error(robj[QStringLiteral("errorMessage")].toString());
         return;
     }
