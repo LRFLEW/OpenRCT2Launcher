@@ -4,26 +4,18 @@ environment:
   matrix:
   - VC_ARCH: x86
     QT_PATH: C:\Qt\5.9.2\msvc2015
-    SSL_BUILD: eti1fvaitgtxayif
+    OPENSSL_PATH: C:\OpenSSL-Win32
     INNO_ARGS: 
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
     QT_PATH: C:\Qt\5.9.2\msvc2017_64
-    SSL_BUILD: bmkjgrjybfqyxg1n
+    OPENSSL_PATH: C:\OpenSSL-Win64
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
     choco install innosetup
 
     [Environment]::CurrentDirectory = $PWD
-
-    $opensslDownloadUrl = "https://ci.appveyor.com/api/buildjobs/$Env:SSL_BUILD/artifacts/OpenSSL-DLLs.zip"
-
-    $wc = New-Object net.webclient
-
-    $wc.Downloadfile($opensslDownloadUrl, "OpenSSL-DLLs.zip")
-
-    7z e "OpenSSL-DLLs.zip"
 build_script:
 - cmd: >-
     "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %VC_ARCH%
@@ -40,9 +32,9 @@ build_script:
 
     windeployqt build-Windows\OpenRCT2.exe
 
-    copy libeay32.dll build-Windows\
+    copy %OPENSSL_PATH%\libeay32.dll build-Windows\
 
-    copy ssleay32.dll build-Windows\
+    copy %OPENSSL_PATH%\ssleay32.dll build-Windows\
 
     pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win%ARTIFACT_SUFFIX%.zip * & popd
 
