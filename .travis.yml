@@ -37,7 +37,7 @@ matrix:
         - DEPLOY_FILE=OpenRCT2Launcher-macos.zip
     - os: linux
       sudo: required
-      dist: trusty
+      dist: xenial
       before_install:
         - sudo apt-get update -qq || true
       install:
