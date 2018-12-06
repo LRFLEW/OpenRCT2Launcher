@@ -3,12 +3,12 @@ image: Visual Studio 2017
 environment:
   matrix:
   - VC_ARCH: x86
-    QT_PATH: C:\Qt\5.9.2\msvc2015
+    QT_PATH: C:\Qt\5.11.2\msvc2015
     OPENSSL_PATH: C:\OpenSSL-Win32
-    INNO_ARGS: 
+    INNO_ARGS: ''
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
-    QT_PATH: C:\Qt\5.9.2\msvc2017_64
+    QT_PATH: C:\Qt\5.11.2\msvc2017_64
     OPENSSL_PATH: C:\OpenSSL-Win64
     INNO_ARGS: /DBUILD64
 install:
