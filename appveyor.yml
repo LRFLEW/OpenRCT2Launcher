@@ -4,12 +4,12 @@ environment:
   matrix:
   - VC_ARCH: x86
     QT_PATH: C:\Qt\5.11.2\msvc2015
-    OPENSSL_PATH: C:\OpenSSL-Win32
+    OPENSSL_PATH: C:\OpenSSL-v111-Win32
     INNO_ARGS: ''
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
     QT_PATH: C:\Qt\5.11.2\msvc2017_64
-    OPENSSL_PATH: C:\OpenSSL-Win64
+    OPENSSL_PATH: C:\OpenSSL-v111-Win64
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
@@ -32,9 +32,9 @@ build_script:
 
     windeployqt build-Windows\OpenRCT2.exe
 
-    copy %OPENSSL_PATH%\libeay32.dll build-Windows\
+    copy %OPENSSL_PATH%\libcrypto-1_1.dll build-Windows\
 
-    copy %OPENSSL_PATH%\ssleay32.dll build-Windows\
+    copy %OPENSSL_PATH%\libssl-1_1.dll build-Windows\
 
     pushd build-Windows & 7z a -tzip ..\OpenRCT2Launcher-win%ARTIFACT_SUFFIX%.zip * & popd
 
