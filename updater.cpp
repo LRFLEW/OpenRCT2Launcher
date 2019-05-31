@@ -144,6 +144,7 @@ void Updater::receivedAPI() {
         githash = QByteArray::fromHex(robj[QStringLiteral("gitHash")].toString().toLatin1());
 
         QNetworkRequest request(robj[QStringLiteral("url")].toString());
+        request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
         bundle = net.get(request);
         connect(bundle, &QNetworkReply::finished, this, &Updater::receivedBundle);
         connect(bundle, &QNetworkReply::downloadProgress, this, &Updater::downloadProgress);
@@ -165,13 +166,13 @@ void Updater::receivedBundle() {
     bundle = nullptr;
 
     if (data.size() != size) {
-        emit error(tr("Invalid Download"));
+        emit error(tr("Invalid Download Size"));
         return;
     }
 
     QByteArray fhash = QCryptographicHash::hash(data, QCryptographicHash::Algorithm::Sha256);
     if (fhash != hash) {
-        emit error(tr("Invalid Download"));
+        emit error(tr("Invalid Download Hash"));
         return;
     }
 

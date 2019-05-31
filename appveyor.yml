@@ -3,13 +3,13 @@ image: Visual Studio 2017
 environment:
   matrix:
   - VC_ARCH: x86
-    QT_PATH: C:\Qt\5.11.2\msvc2015
-    SSL_BUILD: eti1fvaitgtxayif
+    QT_PATH: C:\Qt\5.12\msvc2017
+    SSL_BUILD: OpenSSL_1_0_2s/OpenSSL-VC-WIN32.zip
     INNO_ARGS: ''
     ARTIFACT_SUFFIX: _x86
   - VC_ARCH: amd64
-    QT_PATH: C:\Qt\5.11.2\msvc2017_64
-    SSL_BUILD: bmkjgrjybfqyxg1n
+    QT_PATH: C:\Qt\5.12\msvc2017_64
+    SSL_BUILD: OpenSSL_1_0_2s/OpenSSL-VC-WIN64A.zip
     INNO_ARGS: /DBUILD64
 install:
 - ps: >-
@@ -17,7 +17,7 @@ install:
 
     [Environment]::CurrentDirectory = $PWD
 
-    $opensslDownloadUrl = "https://ci.appveyor.com/api/buildjobs/$Env:SSL_BUILD/artifacts/OpenSSL-DLLs.zip"
+    $opensslDownloadUrl = "https://github.com/LRFLEW/openssl/releases/download/$Env:SSL_BUILD"
 
     $wc = New-Object net.webclient
 
