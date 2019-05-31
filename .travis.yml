@@ -1,6 +1,4 @@
 language: c++
-script:
-  - qmake $QMAKE_ARGS && make
 deploy:
   provider: releases
   api_key:
@@ -21,42 +19,55 @@ deploy:
   on:
     tags: true
 
+before_install:
+  - if [[ -z "$DOCKER_IMAGE" ]]; then
+      brew update ;
+    else
+      docker pull "$DOCKER_IMAGE" &&
+      docker run -dit -v "$(pwd)":/home/launcher --name launcher "$DOCKER_IMAGE" &&
+      docker exec launcher apt-get update ;
+    fi
+install:
+  - if [[ -z "$DOCKER_IMAGE" ]]; then
+      brew install p7zip &&
+      PATH="$(./qt5-mac.sh . base tools):$PATH" ;
+    else
+      docker exec launcher apt-get install --no-install-recommends -y 
+        build-essential qt5-default qt5-qmake qtbase5-dev-tools zlib1g-dev ;
+    fi
+script:
+  - if [[ -z "$DOCKER_IMAGE" ]]; then
+      qmake $QMAKE_ARGS && make ;
+    else
+      docker exec -w /home/launcher launcher qmake &&
+      docker exec -w /home/launcher launcher make ;
+    fi
+after_script:
+  - if [[ -n "$DOCKER_IMAGE" ]]; then docker stop launcher; fi
+before_deploy:
+  - if [[ -z "$DOCKER_IMAGE" ]]; then
+      macdeployqt OpenRCT2.app &&
+      zip -ryq "$DEPLOY_FILE" OpenRCT2.app ;
+    else
+      tar -czf "$DEPLOY_FILE" OpenRCT2 ;
+    fi
+
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.4
-      before_install:
-        - brew update
-      install:
-        - brew install p7zip
-        - PATH="$(./qt5-mac.sh . base tools):$PATH"
-      before_deploy:
-        - macdeployqt OpenRCT2.app
-        - zip -ryq OpenRCT2Launcher-macos.zip OpenRCT2.app
+      osx_image: xcode10.2
       env:
         - DEPLOY_FILE=OpenRCT2Launcher-macos.zip
     - os: linux
-      sudo: required
-      dist: trusty
-      before_install:
-        - sudo apt-get update -qq || true
-      install:
-        - sudo apt-get install -y qt5-default qt5-qmake qtbase5-dev-tools qtmultimedia5-dev zlib1g-dev
-      before_deploy:
-        - tar -czf OpenRCT2Launcher-Linux-x64.tar.gz OpenRCT2
+      dist: xenial
+      services: docker
       env:
         - DEPLOY_FILE=OpenRCT2Launcher-Linux-x64.tar.gz
+        - DOCKER_IMAGE=amd64/ubuntu:bionic
     - os: linux
-      sudo: required
-      dist: trusty
-      before_install:
-        - sudo dpkg --add-architecture i386
-        - sudo apt-get update -qq || true
-      install:
-        - sudo apt-get install -y gcc-multilib g++-multilib zlib1g-dev:i386 libstdc++-4.8-dev:i386 libgl1-mesa-dev:i386 libgl1-mesa-dev:i386
-        - sudo apt-get install -y qtchooser qtbase5-dev:i386 qtmultimedia5-dev:i386 qt5-qmake:i386 qtbase5-dev-tools:i386
-      before_deploy:
-        - tar -czf OpenRCT2Launcher-Linux-x86.tar.gz OpenRCT2
+      dist: xenial
+      services: docker
       env:
-        - QMAKE_ARGS="-qt=qt5-i386-linux-gnu -spec linux-g++-32"
         - DEPLOY_FILE=OpenRCT2Launcher-Linux-x86.tar.gz
+        - DOCKER_IMAGE=i386/ubuntu:bionic
+
