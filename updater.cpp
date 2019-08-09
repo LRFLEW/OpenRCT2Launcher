@@ -51,8 +51,16 @@ void Updater::queryDownloads(QString flavor) {
 }
 
 void Updater::download() {
-    if (api != nullptr) api->abort(), api->deleteLater(), api = nullptr;
-    if (bundle != nullptr) bundle->abort(), bundle->deleteLater(), bundle = nullptr;
+    if (api != nullptr) {
+        api->abort();
+        api->deleteLater();
+        api = nullptr;
+    }
+    if (bundle != nullptr) {
+        bundle->abort();
+        bundle->deleteLater();
+        bundle = nullptr;
+    }
 
     queryDownloads(QStringLiteral(OPENRCT2_FLAVOR));
 }
@@ -61,7 +69,8 @@ void Updater::receivedUpdate() {
     if (update->error() != QNetworkReply::NoError) {
         // Don't emit, so the error is mostly silent
         qDebug() << update->errorString();
-        update->deleteLater(), update = nullptr;
+        update->deleteLater();
+        update = nullptr;
         return;
     }
 
@@ -106,7 +115,8 @@ void Updater::receivedAPI() {
     if (api->error() != QNetworkReply::NoError) {
         if (api->error() != QNetworkReply::OperationCanceledError) {
             emit error(api->errorString());
-            api->deleteLater(), api = nullptr;
+            api->deleteLater();
+            api = nullptr;
         }
         return;
     }
@@ -155,7 +165,8 @@ void Updater::receivedBundle() {
     if (bundle->error() != QNetworkReply::NoError) {
         if (bundle->error() != QNetworkReply::OperationCanceledError) {
             emit error(bundle->errorString());
-            bundle->deleteLater(), bundle = nullptr;
+            bundle->deleteLater();
+            bundle = nullptr;
         }
         return;
     }
@@ -165,15 +176,17 @@ void Updater::receivedBundle() {
     bundle->deleteLater();
     bundle = nullptr;
 
-    if (data.size() != size) {
+    if (size > 0 && data.size() != size) {
         emit error(tr("Invalid Download Size"));
         return;
     }
 
-    QByteArray fhash = QCryptographicHash::hash(data, QCryptographicHash::Algorithm::Sha256);
-    if (fhash != hash) {
-        emit error(tr("Invalid Download Hash"));
-        return;
+    if (hash.size() > 0) {
+        QByteArray fhash = QCryptographicHash::hash(data, QCryptographicHash::Algorithm::Sha256);
+        if (fhash != hash) {
+            emit error(tr("Invalid Download Hash"));
+            return;
+        }
     }
 
     QDir bin = OPENRCT2_HOMEDIR;
