@@ -8,14 +8,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [x86, amd64]
-        include:
-          - platform: x86
-            artifact_suffix: _x86
-            qt_arch: msvc2017
-          - platform: amd64
-            inno_args: /DBUILD64
-            qt_arch: msvc2017_64
+        runs-on: [ubuntu-latest, macos-latest] #windows-latest
+        #platform: [x86, amd64]
+        #include:
+        #  - platform: x86
+        #    artifact_suffix: _x86
+        #    qt_arch: msvc2017
+        #  - platform: amd64
+        #    inno_args: /DBUILD64
+        #    qt_arch: msvc2017_64
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2.13.0
@@ -24,3 +25,5 @@ jobs:
           arch: ${{ matrix.qt_arch }}
       - name: qmake
         run: qmake OpenRCT2Launcher.pro
+      - name: Build
+        run: make -j2
