@@ -22,8 +22,9 @@ jobs:
         with:
           arch: ${{ matrix.qt_arch }}
       - name: Build
+        shell: cmd
         run: |
-          cmd /c ""%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat ${{ matrix.platform }}""
+          "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.platform }}
           qmake OpenRCT2Launcher.pro
           nmake
   build-linux:
