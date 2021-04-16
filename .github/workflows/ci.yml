@@ -12,10 +12,10 @@ jobs:
         include:
           - platform: x86
             artifact_suffix: _x86
-            qt_arch: msvc2017
+            qt_arch: win32_msvc2019
           - platform: amd64
             inno_args: /DBUILD64
-            qt_arch: msvc2017_64
+            qt_arch: win64_msvc2019_64
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2.13.0
