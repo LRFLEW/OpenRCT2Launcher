@@ -25,6 +25,8 @@ jobs:
         shell: cmd
         run: |
           "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.platform }}
+          exit 1
+          dskhfdkjghdjgkjdjhgdhkjghjkdkjhgdjhg
           qmake OpenRCT2Launcher.pro
           nmake
   build-linux:
