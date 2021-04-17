@@ -23,7 +23,7 @@ jobs:
       - uses: jurplel/install-qt-action@v2.13.0
         with:
           arch: ${{ matrix.qt_arch }}
-          version: 2.12.10
+          version: 5.12.4
       - name: Build
         shell: cmd
         run: |
