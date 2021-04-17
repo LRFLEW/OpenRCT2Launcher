@@ -11,11 +11,11 @@ jobs:
         platform: [x86, amd64]
         include:
           - platform: x86
-            qt_arch: win32_msvc2019
+            qt_arch: win32_msvc2017 #win32_msvc2019
             ssl_platform: 32
             artifact_suffix: _x86
           - platform: amd64
-            qt_arch: win64_msvc2019_64
+            qt_arch: win64_msvc2017_64 #win64_msvc2019_64
             ssl_platform: 64A
             inno_args: /DBUILD64
     steps:
