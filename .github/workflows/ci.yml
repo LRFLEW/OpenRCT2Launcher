@@ -29,7 +29,7 @@ jobs:
           nmake
       - name: Prepare artifacts
         run: |
-          $artifact_dir=build-${{ runner.os }}
+          $artifact_dir="build-${{ runner.os }}"
           mkdir $artifact_dir
           copy release\OpenRCT2.exe $artifact_dir
           windeployqt $artifact_dir\OpenRCT2.exe
