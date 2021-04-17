@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: windows-2016 #windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -23,10 +23,11 @@ jobs:
       - uses: jurplel/install-qt-action@v2.13.0
         with:
           arch: ${{ matrix.qt_arch }}
+          version: 2.12.4
       - name: Build
         shell: cmd
         run: |
-          call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.platform }}
+          call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.platform }}
           qmake OpenRCT2Launcher.pro
           nmake
       - name: Prepare artifacts
@@ -53,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }} exe
-          path: ${{ steps.prepare_artifacts.outputs.artifact_path }}/*.exe
+          path: OpenRCT2Launcher-win*.exe
           if-no-files-found: error
   build-linux:
     runs-on: ubuntu-latest
