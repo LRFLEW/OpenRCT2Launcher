@@ -31,9 +31,9 @@ jobs:
         run: |
           mkdir artifacts
           copy release\OpenRCT2.exe artifacts
-          windeployqt build-Windows\OpenRCT2.exe
-          copy libeay32.dll artifacts
-          copy ssleay32.dll artifacts
+          windeployqt artifacts\OpenRCT2.exe
+          #copy libeay32.dll artifacts
+          #copy ssleay32.dll artifacts
           7z a OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}.zip 
           iscc ${{ matrix.inno_args }} installer.iss
       - name: Upload artifact (zip)
