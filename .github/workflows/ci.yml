@@ -32,7 +32,7 @@ jobs:
       - name: Prepare artifacts
         id: prepare_artifacts
         run: |
-          $artifact_dir="build-${{ runner.os }}"
+          $artifact_path="build-${{ runner.os }}"
           mkdir $artifact_path
           copy release\OpenRCT2.exe $artifact_path
           windeployqt $artifact_dir\OpenRCT2.exe
