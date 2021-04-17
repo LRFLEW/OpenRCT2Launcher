@@ -11,11 +11,13 @@ jobs:
         platform: [x86, amd64]
         include:
           - platform: x86
-            artifact_suffix: _x86
             qt_arch: win32_msvc2019
+            ssl_platform: 32
+            artifact_suffix: _x86
           - platform: amd64
-            inno_args: /DBUILD64
             qt_arch: win64_msvc2019_64
+            ssl_platform: 64A
+            inno_args: /DBUILD64
     steps:
       - uses: actions/checkout@v2
       - uses: jurplel/install-qt-action@v2.13.0
@@ -28,26 +30,30 @@ jobs:
           qmake OpenRCT2Launcher.pro
           nmake
       - name: Prepare artifacts
+        id: prepare_artifacts
         run: |
           $artifact_dir="build-${{ runner.os }}"
-          mkdir $artifact_dir
-          copy release\OpenRCT2.exe $artifact_dir
+          mkdir $artifact_path
+          copy release\OpenRCT2.exe $artifact_path
           windeployqt $artifact_dir\OpenRCT2.exe
-          #copy libeay32.dll artifacts
-          #copy ssleay32.dll artifacts
-          7z a OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}.zip $artifact_dir
+          $ssl_zip="OpenSSL-VC-WIN${{ matrix.ssl_platform }}.zip"
+          curl -fLO "https://github.com/LRFLEW/openssl/releases/download/OpenSSL_1_0_2s/$ssl_zip"
+          7z e $ssl_zip libeay32.dll ssleay32.dll -o$artifact_path
           iscc ${{ matrix.inno_args }} installer.iss
+          echo "::set-output name=artifact_path::$artifact_path"
       - name: Upload artifact (zip)
         uses: actions/upload-artifact@v2
         with:
-          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}
-          path: OpenRCT2Launcher*.zip
+          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }} zip
+          path: |
+            !**/*.exe
+            ${{ steps.prepare_artifacts.outputs.artifact_path }}
           if-no-files-found: error
       - name: Upload artifact (exe)
         uses: actions/upload-artifact@v2
         with:
-          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}
-          path: OpenRCT2Launcher*.exe
+          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }} exe
+          path: ${{ steps.prepare_artifacts.outputs.artifact_path }}/*.exe
           if-no-files-found: error
   build-linux:
     runs-on: ubuntu-latest
