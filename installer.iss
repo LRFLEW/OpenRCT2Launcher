@@ -4,7 +4,7 @@
 #define MyAppName "OpenRCT2 Launcher"
 #define MyAppVersion "0.0.7"
 #define MyAppPublisher "OpenRCT2"
-#define MyAppURL "http://www.github.com/LRFLEW/OpenRCT2Launcher"
+#define MyAppURL "https://www.github.com/LRFLEW/OpenRCT2Launcher"
 #define MyAppExeName "OpenRCT2.exe"
 
 #ifdef BUILD64
