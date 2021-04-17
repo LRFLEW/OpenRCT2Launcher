@@ -27,6 +27,27 @@ jobs:
           call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.platform }}
           qmake OpenRCT2Launcher.pro
           nmake
+      - name: Prepare artifacts
+        run: |
+          mkdir artifacts
+          copy release\OpenRCT2.exe artifacts
+          windeployqt build-Windows\OpenRCT2.exe
+          copy libeay32.dll artifacts
+          copy ssleay32.dll artifacts
+          7z a OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}.zip 
+          iscc ${{ matrix.inno_args }} installer.iss
+      - name: Upload artifact (zip)
+        uses: actions/upload-artifact@v2
+        with:
+          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}
+          path: OpenRCT2Launcher*.zip
+          if-no-files-found: error
+      - name: Upload artifact (exe)
+        uses: actions/upload-artifact@v2
+        with:
+          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}
+          path: OpenRCT2Launcher*.exe
+          if-no-files-found: error
   build-linux:
     runs-on: ubuntu-latest
     steps:
