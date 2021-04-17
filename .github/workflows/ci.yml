@@ -35,7 +35,7 @@ jobs:
           $artifact_path="build-${{ runner.os }}"
           mkdir $artifact_path
           copy release\OpenRCT2.exe $artifact_path
-          windeployqt $artifact_dir\OpenRCT2.exe
+          windeployqt $artifact_path\OpenRCT2.exe
           $ssl_zip="OpenSSL-VC-WIN${{ matrix.ssl_platform }}.zip"
           curl -fLO "https://github.com/LRFLEW/openssl/releases/download/OpenSSL_1_0_2s/$ssl_zip"
           7z e $ssl_zip libeay32.dll ssleay32.dll -o$artifact_path
