@@ -46,10 +46,8 @@ jobs:
       - name: Upload artifact (zip)
         uses: actions/upload-artifact@v2
         with:
-          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }} zip
-          path: |
-            !**/*.exe
-            ${{ steps.prepare_artifacts.outputs.artifact_path }}
+          name: OpenRCT2Launcher-${{ runner.os }}${{ matrix.artifact_suffix }}
+          path: ${{ steps.prepare_artifacts.outputs.artifact_path }}
           if-no-files-found: error
       - name: Upload artifact (exe)
         uses: actions/upload-artifact@v2
