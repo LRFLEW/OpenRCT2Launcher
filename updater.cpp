@@ -93,7 +93,7 @@ void Updater::receivedUpdate() {
                         QStringLiteral("<font size=4 style=\"white-space:nowrap;\" align=center><p>") %
                         tr("There is a new update available for the launcher.") %
                         QStringLiteral("<br />") %
-                        tr("It is recomended that you update.") %
+                        tr("It is recommended that you update.") %
                         QStringLiteral("</p><p>") %
                         tr("Installed Version: ") %
                         QStringLiteral(APP_VERSION) %
