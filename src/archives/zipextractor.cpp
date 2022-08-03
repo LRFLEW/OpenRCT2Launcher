@@ -16,6 +16,27 @@ static inline QFile::Permissions getPermissionsFromUnix(quint16 type) {
     return static_cast<QFile::Permissions>(((type & 0700) << 6) | ((type & 0700) << 2) | ((type & 0070) << 1) | (type & 0007));
 }
 
+static void handleSymlinkDylib(const QString& filename) {
+    if (filename.endsWith(".dylib")) {
+        QFile file(filename);
+        file.open(QFile::ReadOnly);
+        if (file.size() < 100) {
+            auto targetFilename = static_cast<QString>(file.readLine());
+            file.close();
+            file.remove();
+            QFile::link(targetFilename, filename);
+        } else {
+            file.close();
+            file.setPermissions(
+                file.permissions() |
+                QFileDevice::ExeOwner |
+                QFileDevice::ExeGroup |
+                QFileDevice::ExeOther
+            );
+        }
+    }
+}
+
 bool extractZip(QIODevice *in, QDir extractLoc) {
     in->open(QIODevice::ReadOnly);
     QDataStream stream(in);
@@ -78,6 +99,8 @@ bool extractZip(QIODevice *in, QDir extractLoc) {
                 }
 
                 file.close();
+
+                handleSymlinkDylib(extractLoc.filePath(name));
                 if (rcrc != crc) return false; // CRC-32 Mismatch
 
             } else { // Standard DEFLATE
@@ -118,6 +141,9 @@ bool extractZip(QIODevice *in, QDir extractLoc) {
                 }
 
                 file.close();
+
+                handleSymlinkDylib(extractLoc.filePath(name));
+
                 ret ^= 1;
                 ret |= inflateEnd(&strm);
                 if (ret != Z_OK) return false;
