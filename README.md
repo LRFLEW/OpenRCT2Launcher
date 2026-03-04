@@ -1,9 +1,14 @@
-# OpenRCT2 Launcher
+# This Launcher is Retired
+
+This project is no longer actively maintained, and should not be used.
+**Please use [the official launcher](https://github.com/OpenRCT2/OpenLauncher/) instead.**
+
+## OpenRCT2 Launcher
 An Open Source Launcher &amp; Updater for OpenRCT2
 
 This is a new launcher for [OpenRCT2](https://github.com/OpenRCT2/OpenRCT2). It's written in C++ using the Qt Framework and supports Windows, Mac OS X and Linux.
 
-## Dependencies
+### Dependencies
 
 To build this project, you need [Qt 5](http://www.qt.io/download-open-source/). Note that Qt 4 will not work. You also need Zlib to compile and run this, but since Qt 5 is already dependent on it, the compiler will attempt to use the version that comes with Qt and fallback to a system-installed version if need be. Lastly, this project needs OpenSSL installed to communicate properly with the server.
 
